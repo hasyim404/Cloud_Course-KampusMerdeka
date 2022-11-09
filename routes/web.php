@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\KelolaUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('admin/', AdminController::class);
+Route::resource('admin/dashboard', AdminController::class);
+Route::resource('admin/kelola-user', KelolaUserController::class);
