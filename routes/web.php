@@ -15,10 +15,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+// Landingpage Routes
 Route::get('/', function () {
-    return view('welcome');
+    return view('landingpage.home');
 });
 
+Route::get('/home', function () {
+    return view('landingpage.home');
+});
+
+Route::get('/course', function () {
+    return view('landingpage.course');
+});
+
+Route::get('/about', function () {
+    return view('landingpage.about');
+});
+
+
+// Admin Routes
 Route::resource('admin/', AdminController::class);
 Route::resource('admin/dashboard', AdminController::class);
 Route::resource('admin/kelola-user', KelolaUserController::class);
