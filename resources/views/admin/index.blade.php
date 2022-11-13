@@ -43,11 +43,12 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>@yield('title') </h1>
+      <h1>@yield('info') </h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ url('/admin') }}"><i class="bi bi-house"></i></a></li>
-          <li class="breadcrumb-item active">@yield('title') </li>
+          <li class="breadcrumb-item active"><a href="#!">@yield('data1')</a></li>
+          <li class="breadcrumb-item active"><a href="#!">@yield('data2')</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -65,7 +66,7 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  @include('admin.partials.footer')
+  {{-- @include('admin.partials.footer') --}}
   <!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

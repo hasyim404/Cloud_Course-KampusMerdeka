@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KelolaUserController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\FeedbackController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,4 +43,6 @@ Route::get('/about', function () {
 // Admin Routes
 Route::resource('admin/', AdminController::class);
 Route::resource('admin/dashboard', AdminController::class);
-Route::resource('admin/kelola-user', KelolaUserController::class);
+Route::resource('admin/user', KelolaUserController::class);
+Route::resource('admin/course', CourseController::class);
+Route::resource('admin/feedback', FeedbackController::class);

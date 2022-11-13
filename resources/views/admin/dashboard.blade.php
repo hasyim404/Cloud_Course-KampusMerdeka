@@ -1,7 +1,7 @@
 @extends('admin.index')
-@section('title')
-    Dashboard
-@endsection
+@section('title', 'Dashboard')
+@section('info', 'Dashboard')
+@section('data1', 'Dashboard')
 @section('content')
 <div class="col-lg-12">
     <div class="row">
