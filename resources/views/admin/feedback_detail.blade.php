@@ -22,7 +22,7 @@
 
       <div class="row">
         <div class="col-lg-3 col-md-4 label">Course:</div>
-        <div class="col-lg-9 col-md-8">{{ $data->course->nama }}</div>
+        <div class="col-lg-9 col-md-8">{{ $data->course->nama_course }}</div>
       </div>
 
       <div class="row">
