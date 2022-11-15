@@ -11,17 +11,20 @@
       <!-- Floating Labels Form -->
       <form class="row g-3" method="POST" action="{{ route('feedback.store') }}">
         @csrf
+
         @if ($errors->any())
           <div class="alert alert-danger">
-            <strong>Whoops!</strong> Ada Salah saat input data
-            <br><br>
+            {{-- <strong>Whoops!</strong> Ada Salah saat input data --}}
+            <strong>Error!</strong>
+            {{-- <br><br> --}}
             <ul>
-                @foreach ($errors->all as $error)
+                @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>                        
                 @endforeach
             </ul>
           </div>    
-          @endif
+        @endif
+
         <div class="col-md-6">
           <div class="form-floating">
             <input type="text" class="form-control" id="floatingName" name="nama" placeholder="Nama User">
@@ -43,7 +46,7 @@
             @endphp
               @foreach ($course as $data)
 
-                <option value="{{ $data['id'] }}"> {{ $no++ }} - {{ $data['nama'] }}</option> 
+                <option value="{{ $data['id'] }}"> {{ $no++ }} - {{ $data['nama_course'] }}</option> 
 
               @endforeach
 

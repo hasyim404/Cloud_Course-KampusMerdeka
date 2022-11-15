@@ -98,6 +98,9 @@ class FeedbackController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Feedback::find($id);
+        Feedback::where('id',$id)->delete();
+        return redirect()->route('feedback.index')
+                        ->with('success','Data Feedback Berhasil Dihapus');
     }
 }

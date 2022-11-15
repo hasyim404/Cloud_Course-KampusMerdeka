@@ -45,8 +45,8 @@
                                 @foreach ( $course as $data )
                                 <tr>
                                     <th scope="row">{{ $no++ }}.</th>
-                                    <td>{{ $data->nama }}</td>
-                                    <td>{{ $data->deskripsi }}</td>
+                                    <td>{{ $data->nama_course }}</td>
+                                    <td>{{ $data->deskripsi_course }}</td>
                                     <td>
                                         <a href="{{ route('course.show',$data->id) }}" class="btn btn-primary btn-sm">
                                             <i class="bi bi-eye"></i>

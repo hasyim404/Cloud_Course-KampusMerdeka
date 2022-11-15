@@ -49,18 +49,23 @@
                                     <th scope="row">{{ $no++ }}.</th>
                                     <td>{{ $data->nama }}</td>
                                     <td>{{ $data->email }}</td>
-                                    <td>{{ $data->course->nama }}</td>
+                                    <td>{{ $data->course->nama_course }}</td>
                                     <td>{{ $data->isi_feedback }}</td>
                                     <td>
-                                        <a href="{{ route('feedback.show',$data->id) }}" class="btn btn-primary btn-sm">
-                                            <i class="bi bi-eye"></i>
-                                        </a>
-                                        <a href="{{ route('feedback.show',$data->id) }}" class="btn btn-warning btn-sm">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <a href="{{ route('feedback.show',$data->id) }}" class="btn btn-danger btn-sm">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
+                                        <form method="POST" action="{{ route('feedback.destroy',$data->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <a href="{{ route('feedback.show',$data->id) }}" class="btn btn-primary btn-sm">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                            <a href="{{ route('feedback.show',$data->id) }}" class="btn btn-warning btn-sm">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Hapus Pegawai" 
+                                                    onclick="return confirm('Anda Yakin ingin menghapus data feedback user dari {{ $data->nama }}?')">
+                                                    <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                     {{-- <td><span class="badge bg-success">Approved</span></td> --}}
                                 </tr>    

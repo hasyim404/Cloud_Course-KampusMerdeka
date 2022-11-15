@@ -17,7 +17,7 @@
             <strong>Whoops!</strong> Ada Salah saat input data
             <br><br>
             <ul>
-                @foreach ($errors->all as $error)
+                @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>                        
                 @endforeach
             </ul>
