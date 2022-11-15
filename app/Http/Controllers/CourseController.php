@@ -16,7 +16,7 @@ class CourseController extends Controller
     {
         $course = Course::all();
         // $course = Course::orderBy('id', 'DESC')->get();
-        return view ('admin.course_data',compact('course'));
+        return view ('admin.course.index',compact('course'));
     }
 
     /**
@@ -26,7 +26,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('admin.course_form');
+        return view('admin.course.form');
     }
 
     /**
@@ -56,7 +56,7 @@ class CourseController extends Controller
     public function show($id)
     {
         $data = Course::find($id);
-        return view('admin.course_detail',compact('data'));
+        return view('admin.course.detail',compact('data'));
     }
 
     /**

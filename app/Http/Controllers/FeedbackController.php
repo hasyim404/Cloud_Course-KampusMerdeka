@@ -16,7 +16,7 @@ class FeedbackController extends Controller
     public function index()
     {
         $feedback = Feedback::all();
-        return view ('admin.feedback_data',compact('feedback'));
+        return view ('admin.feedback.index',compact('feedback'));
     }
 
     /**
@@ -28,7 +28,7 @@ class FeedbackController extends Controller
     {
         $course = Course::all();
 
-        return view('admin.feedback_form',compact('course'));
+        return view('admin.feedback.form',compact('course'));
     }
 
     /**
@@ -64,7 +64,7 @@ class FeedbackController extends Controller
     public function show($id)
     {
         $data = Feedback::find($id);
-        return view('admin.feedback_detail',compact('data'));
+        return view('admin.feedback.detail',compact('data'));
     }
 
     /**
