@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('feedback', function (Blueprint $table) {
+        Schema::create('testimoni', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama');
-            $table->string('email')->unique();
-            $table->text('isi_feedback');
-            $table->integer('course_id');
+            $table->string('nama',100);
+            $table->text('isi_pesan');
+            $table->string('foto',45)->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('feedback');
+        Schema::dropIfExists('testimoni');
     }
 };

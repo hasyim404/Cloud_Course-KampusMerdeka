@@ -42,8 +42,12 @@ class FeedbackController extends Controller
         $request->validate([
             'nama' => 'required|max:255',
             'email' => 'required|email|max:100',
-            'course_id' => 'required',
-            'isi_feedback' => 'required',
+            'course_id' => 'required|integer',
+           /**  
+            * kalo gamau ada validasi pake nullable aja
+            * 'isi_feedback' => 'nullable', 
+            */
+            'isi_feedback' => 'required|min:10',
         ]);
 
         Feedback::create($request->all());
