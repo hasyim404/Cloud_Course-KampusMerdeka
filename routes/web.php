@@ -43,6 +43,7 @@ Route::get('/about', function () {
 // Admin Routes
 Route::resource('admin/', AdminController::class);
 Route::resource('admin/dashboard', AdminController::class);
-Route::resource('admin/user', KelolaUserController::class);
+Route::resource('admin/users', KelolaUserController::class);
+// Route::get('admin/user-edit/{id}', [KelolaUserController::class,'edit']);
 Route::resource('admin/course', CourseController::class);
 Route::resource('admin/feedback', FeedbackController::class);

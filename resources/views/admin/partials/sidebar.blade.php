@@ -14,12 +14,12 @@
       <li class="nav-heading">Kelola Data</li>
 
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('admin/user') ? "" : "collapsed" }}" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link {{ Request::is('admin/users') || Request::is('admin/users/create') || Request::is('admin/users/*') || Request::is('admin/users/*/edit') ? "" : "collapsed" }}" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-person-lines-fill"></i><span>User</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav" class="nav-content collapse{{ Request::is('admin/user') ? " show" : "" }} " data-bs-parent="#sidebar-nav">
+        <ul id="components-nav" class="nav-content collapse{{ Request::is('admin/users') || Request::is('admin/users/create') || Request::is('admin/users/*') || Request::is('admin/users/*/edit') ? " show" : "" }} " data-bs-parent="#sidebar-nav">
           <li>
-            <a class="{{ Request::is('admin/user') ? "active" : "" }}" href="{{ url('admin/user') }}">
+            <a class="{{ Request::is('admin/users') || Request::is('admin/users/create') || Request::is('admin/users/*') || Request::is('admin/users/*/edit') ? "active" : "" }}" href="{{ url('admin/users') }}">
               <i class="bi bi-circle"></i><span>Kelola User</span>
             </a>
           </li>
@@ -27,9 +27,9 @@
       </li><!-- End Kelola User Nav -->
 
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('admin/course') ? "" : "collapsed" }}" 
+        <a class="nav-link {{ Request::is('admin/course') || Request::is('admin/course/create') || Request::is('admin/course/*') || Request::is('admin/course/*/edit') ? "" : "collapsed" }}" 
           href="{{ url('admin/course') }}">
-          <i class="bi bi-grid"></i>
+          <i class="bi bi-cloud-haze2-fill"></i>
           
           <span>Course</span>
         </a>
@@ -37,14 +37,34 @@
       <!-- End Course Nav -->
 
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('admin/feedback') ? "" : "collapsed" }}" 
+        <a class="nav-link {{ Request::is('admin/modul') || Request::is('admin/modul/create') || Request::is('admin/modul/*') || Request::is('admin/modul/*/edit') ? "" : "collapsed" }}" 
           href="{{ url('admin/feedback') }}">
-          <i class="bi bi-grid"></i>
+          <i class="bi bi-files"></i>
+          
+          <span>Modul</span>
+        </a>
+      </li>
+      <!-- End Testimoni Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('admin/feedback') || Request::is('admin/feedback/create') || Request::is('admin/feedback/*') || Request::is('admin/feedback/*/edit') ? "" : "collapsed" }}" 
+          href="{{ url('admin/feedback') }}">
+          <i class="bi bi-envelope-fill"></i>
           
           <span>Feedback</span>
         </a>
       </li>
       <!-- End Feedback Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('admin/testimoni') || Request::is('admin/testimoni/create') || Request::is('admin/testimoni/*') || Request::is('admin/testimoni/*/edit') ? "" : "collapsed" }}" 
+          href="{{ url('admin/feedback') }}">
+          <i class="bi bi-grid"></i>
+          
+          <span>Testimoni</span>
+        </a>
+      </li>
+      <!-- End Testimoni Nav -->
 
     </ul>
 
