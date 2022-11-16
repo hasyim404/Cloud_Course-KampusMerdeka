@@ -6,6 +6,13 @@
 @section('content')
 <section class="section profile">
     <div class="row">
+
+      @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>    
+      @endif
+
       <div class="col-xl-4">
 
         <div class="card">
