@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('feedback', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama');
-            $table->string('email')->unique();
+            $table->string('nama',50);
+            $table->string('email',60)->unique();
             $table->text('isi_feedback');
             $table->integer('course_id');
             $table->timestamps();

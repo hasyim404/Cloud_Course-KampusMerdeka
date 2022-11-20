@@ -27,38 +27,38 @@
 
         <div class="col-md-6">
           <div class="form-floating">
-            <input type="text" class="form-control" id="floatingName" name="f_name" placeholder="">
+            <input type="text" class="form-control" id="floatingName" name="f_name" placeholder="First Name">
             <label for="floatingName">First Name</label>
           </div>
         </div>
         <div class="col-md-6">
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingName" name="l_name" placeholder="">
+                <input type="text" class="form-control" id="floatingName" name="l_name" placeholder="Last Name">
                 <label for="floatingName">Last Name</label>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-floating">
-                <input type="email" class="form-control" id="floatingName" name="email" placeholder="">
+                <input type="email" class="form-control" id="floatingName" name="email" placeholder="Email">
                 <label for="floatingName">Email</label>
             </div>
         </div>
         <div class="col-md-6">
           <div class="form-floating">
-            <input type="text" class="form-control" id="floatingName" name="no_telp" placeholder="Email">
+            <input type="text" class="form-control" id="floatingName" name="no_telp" placeholder="No. Telp">
             <label for="floatingName">No. Telp</label>
           </div>
         </div>
         <div class="col-md-6">
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingName" name="username" placeholder="">
+                <input type="text" class="form-control" id="floatingName" name="username" placeholder="Username">
                 <label for="floatingName">Username</label>
             </div>
         </div>
         
         <div class="col-md-6">
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingName" name="password" placeholder="">
+                <input type="password" class="form-control" id="floatingName" name="password" placeholder="Password">
                 <label for="floatingName">Password</label>
             </div>
         </div>
@@ -80,7 +80,7 @@
         <div class="row g-3">
             <div class="col-md-4">
                 <div class="form-floating">
-                    <input type="file" class="form-control" id="floatingName" name="foto" placeholder="">
+                    <input type="file" class="form-control" id="floatingName" name="foto" placeholder="Foto">
                     <label for="floatingName">Foto</label>
                 </div>
             </div>    

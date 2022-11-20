@@ -82,7 +82,7 @@
 
                 <div class="text-end">
                     <a class="btn btn-primary btn-md" href=" {{ url('admin/users') }}">
-                        Back
+                      <i class="bi bi-caret-left-square"></i> Back
                     </a>  
                 </div>
               
