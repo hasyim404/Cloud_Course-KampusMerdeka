@@ -12,53 +12,65 @@
       <form class="row g-3" method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
         @csrf
 
-        @if ($errors->any())
-          <div class="alert alert-danger">
-            {{-- <strong>Whoops!</strong> Ada Salah saat input data --}}
-            <strong>Error!</strong>
-            {{-- <br><br> --}}
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>                        
-                @endforeach
-            </ul>
-          </div>    
-        @endif
-
         <div class="col-md-6">
           <div class="form-floating">
-            <input type="text" class="form-control" id="floatingName" name="f_name" placeholder="">
+            <input type="text" class="form-control @error('f_name') is-invalid @enderror" id="floatingName" name="f_name" value="{{ old('f_name') }}" placeholder="First Name">
             <label for="floatingName">First Name</label>
+            @error('f_name')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>  
+            @enderror
           </div>
         </div>
         <div class="col-md-6">
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingName" name="l_name" placeholder="">
+                <input type="text" class="form-control @error('l_name') is-invalid @enderror" id="floatingName" name="l_name" value="{{ old('l_name') }}" placeholder="Last Name">
                 <label for="floatingName">Last Name</label>
+                @error('l_name')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>  
+                @enderror
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-floating">
-                <input type="email" class="form-control" id="floatingName" name="email" placeholder="">
+                <input type="email" class="form-control @error('email') is-invalid @enderror" id="floatingName" name="email" value="{{ old('email') }}" placeholder="Email">
                 <label for="floatingName">Email</label>
+                @error('email')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>  
+                @enderror
             </div>
         </div>
         <div class="col-md-6">
           <div class="form-floating">
-            <input type="text" class="form-control" id="floatingName" name="no_telp" placeholder="Email">
+            <input type="text" class="form-control @error('no_telp') is-invalid @enderror" id="floatingName" name="no_telp" value="{{ old('no_telp') }}" placeholder="No. Telp">
             <label for="floatingName">No. Telp</label>
+            @error('no_telp')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>  
+            @enderror
           </div>
         </div>
         <div class="col-md-6">
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingName" name="username" placeholder="">
+                <input type="text" class="form-control @error('username') is-invalid @enderror" id="floatingName" name="username" value="{{ old('username') }}" placeholder="Username">
                 <label for="floatingName">Username</label>
+                @error('username')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>  
+                @enderror
             </div>
         </div>
         
         <div class="col-md-6">
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingName" name="password" placeholder="">
+                <input type="password" class="form-control" id="floatingName" name="password" placeholder="Password">
                 <label for="floatingName">Password</label>
             </div>
         </div>
@@ -80,7 +92,7 @@
         <div class="row g-3">
             <div class="col-md-4">
                 <div class="form-floating">
-                    <input type="file" class="form-control" id="floatingName" name="foto" placeholder="">
+                    <input type="file" class="form-control" id="floatingName" name="foto" placeholder="Foto">
                     <label for="floatingName">Foto</label>
                 </div>
             </div>    

@@ -28,38 +28,38 @@
 
         <div class="col-md-6">
           <div class="form-floating">
-            <input type="text" class="form-control" value="{{ $data->f_name }}" id="floatingName" name="f_name" placeholder="">
+            <input type="text" class="form-control" value="{{ $data->f_name }}" id="floatingName" name="f_name" placeholder="First Name">
             <label for="floatingName">First Name</label>
           </div>
         </div>
         <div class="col-md-6">
             <div class="form-floating">
-                <input type="text" class="form-control" value="{{ $data->l_name }}" id="floatingName"  name="l_name" placeholder="">
+                <input type="text" class="form-control" value="{{ $data->l_name }}" id="floatingName"  name="l_name" placeholder="Last Name">
                 <label for="floatingName">Last Name</label>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-floating">
-                <input type="email" class="form-control" value="{{ $data->email }}" id="floatingName" name="email" placeholder="">
+                <input type="email" class="form-control" value="{{ $data->email }}" id="floatingName" name="email" placeholder="Email">
                 <label for="floatingName">Email</label>
             </div>
         </div>
         <div class="col-md-6">
           <div class="form-floating">
-            <input type="text" class="form-control" value="{{ $data->no_telp }}" id="floatingName" name="no_telp" placeholder="Email">
+            <input type="text" class="form-control" value="{{ $data->no_telp }}" id="floatingName" name="no_telp" placeholder="No. Telp">
             <label for="floatingName">No. Telp</label>
           </div>
         </div>
         <div class="col-md-6">
             <div class="form-floating">
-                <input type="text" class="form-control" value="{{ $data->username }}" id="floatingName" name="username" placeholder="">
+                <input type="text" class="form-control" value="{{ $data->username }}" id="floatingName" name="username" placeholder="Username">
                 <label for="floatingName">Username</label>
             </div>
         </div>
         
         <div class="col-md-6">
             <div class="form-floating">
-                <input type="text" class="form-control" value="{{ $data->password }}" id="floatingName" name="password" placeholder="">
+                <input type="text" class="form-control" value="{{ $data->password }}" id="floatingName" name="password" placeholder="Password">
                 <label for="floatingName">Password</label>
             </div>
         </div>
@@ -81,12 +81,17 @@
         <div class="row g-3">
             <div class="col-md-4">
                 <div class="form-floating">
-                    <input type="file" class="form-control" id="floatingName" name="foto" placeholder="">
+                    <input type="file" class="form-control" id="floatingName" name="foto" placeholder="Foto">
                     <label for="floatingName">Foto</label>
-                    @if(!empty($data->foto)) 
-                    <img src="{{ url('img/users_profile')}}/{{$data->foto}}" height="120px" alt="Profile"  class="img-thumbnail p-1 m-2">
-                        {{-- <br/>{{$data->foto}} --}}
-                    @endif
+                    <div class="row">
+                      <div class="col-lg text-center">
+                        @if(!empty($data->foto)) 
+                          <h5 class="pt-2">Current User Profile Image:</h5>
+                          <img src="{{ url('img/users_profile')}}/{{$data->foto}}" height="120px" alt="Profile"  class="img-thumbnail p-1 ">
+                          <br/>{{$data->foto}}
+                        @endif    
+                      </div>
+                    </div>
                 </div>
             </div>    
         </div>

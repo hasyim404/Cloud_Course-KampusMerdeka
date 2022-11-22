@@ -38,7 +38,7 @@
 
       <li class="nav-item">
         <a class="nav-link {{ Request::is('admin/modul') || Request::is('admin/modul/create') || Request::is('admin/modul/*') || Request::is('admin/modul/*/edit') ? "" : "collapsed" }}" 
-          href="{{ url('admin/feedback') }}">
+          href="{{ url('admin/modul') }}">
           <i class="bi bi-files"></i>
           
           <span>Modul</span>
@@ -58,7 +58,7 @@
 
       <li class="nav-item">
         <a class="nav-link {{ Request::is('admin/testimoni') || Request::is('admin/testimoni/create') || Request::is('admin/testimoni/*') || Request::is('admin/testimoni/*/edit') ? "" : "collapsed" }}" 
-          href="{{ url('admin/feedback') }}">
+          href="{{ url('admin/testimoni') }}">
           <i class="bi bi-grid"></i>
           
           <span>Testimoni</span>

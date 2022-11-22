@@ -8,26 +8,36 @@
 
         <div class="col-xxl-12">
             <div class="card info-card sales-card">
+                <div class="d-flex flex-row p-3">
+                    <li class="dropdown-header"><a href="{{ route('feedback.create') }}" class="btn btn-primary btn-sm">
+                        <i class="bi bi-plus"></i> Tambah Data</a>
+                    </li>    
+                    <li class="dropdown-header text-center px-2"><a href="{{ url('get-feedback-pdf') }}" class="btn btn-danger btn-sm">
+                        <i class="bi bi-filetype-pdf"></i> Export PDF</a>
+                    </li>     
+                </div>
                 
-                <div class="d-flex align-items-center mt-5">
+                <div class="d-flex align-items-center mt-2">
 
-                    <div class="filter">
+                    {{-- <div class="filter">
                         <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                             <li class="dropdown-header text-start">
-                            <h6>Filter</h6>
+                            <h6>Action</h6>
                             </li>
         
-                            <li><a href="{{ route('feedback.create') }}" class="btn btn-success btn-sm">Tambah Data</a></li>
-                            <li><a class="dropdown-item" href="#">This Month</a></li>
-                            <li><a class="dropdown-item" href="#">This Year</a></li>
+                            <li class="text-center px-3"><a href="{{ route('feedback.create') }}" class="btn btn-success btn-sm">
+                                <i class="bi bi-plus"></i> Tambah Data</a>
+                            </li>
+                            <li class="text-center px-3 py-2"><a href="{{ url('get-feedback-pdf') }}" class="btn btn-danger btn-sm">
+                                <i class="bi bi-filetype-pdf"></i> Export PDF</a>
+                            </li>
                         </ul>
-                    </div>
-                    
+                    </div> --}}
                     <div class="card-body">
                         @if ($message = Session::get('success'))
                         <div class="alert alert-success">
-                                <p>{{ $message }}</p>
+                            <p>{{ $message }}</p>
                         </div>    
                         @endif
                         <table class="table table-borderless datatable">
@@ -35,9 +45,8 @@
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Nama User</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Course</th>
                                     <th scope="col">Isi Feedback</th>
+                                    <th scope="col">Course</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -48,9 +57,8 @@
                                 <tr>
                                     <th scope="row">{{ $no++ }}.</th>
                                     <td>{{ $data->nama }}</td>
-                                    <td>{{ $data->email }}</td>
-                                    <td>{{ $data->course->nama_course }}</td>
                                     <td>{{ $data->isi_feedback }}</td>
+                                    <td>{{ $data->course->nama_course }}</td>
                                     <td>
                                         <form method="POST" action="{{ route('feedback.destroy',$data->id) }}">
                                             @csrf
@@ -58,11 +66,11 @@
                                             <a href="{{ route('feedback.show',$data->id) }}" class="btn btn-primary btn-sm">
                                                 <i class="bi bi-eye"></i>
                                             </a>
-                                            <a href="{{ route('feedback.show',$data->id) }}" class="btn btn-warning btn-sm">
+                                            <a href="{{ route('feedback.edit',$data->id) }}" class="btn btn-warning btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Hapus Pegawai" 
-                                                    onclick="return confirm('Anda Yakin ingin menghapus data feedback user dari {{ $data->nama }}?')">
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Hapus Feedback" 
+                                                    onclick="return confirm('Anda Yakin ingin menghapus data Feedback {{ $data->nama }}?')">
                                                     <i class="bi bi-trash"></i>
                                             </button>
                                         </form>

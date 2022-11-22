@@ -9,8 +9,9 @@
       <h5 class="card-title">Tambah Feedback</h5>
 
       <!-- Floating Labels Form -->
-      <form class="row g-3" method="POST" action="{{ route('feedback.store') }}">
+      <form class="row g-3" method="POST" action="{{ route('feedback.update',$data->id) }}">
         @csrf
+        @method('PUT')
 
         @if ($errors->any())
           <div class="alert alert-danger">
@@ -28,7 +29,7 @@
         <div class="row g-3">
           <div class="col-md-6">
             <div class="form-floating">
-              <input type="text" class="form-control" id="floatingName" name="nama" placeholder="Nama User">
+              <input type="text" class="form-control" value="{{ $data->nama }}" id="floatingName" name="nama" placeholder="Nama User">
               <label for="floatingName">Nama User</label>
             </div>
           </div>
@@ -37,7 +38,7 @@
         <div class="row g-3">
           <div class="col-md-6">
             <div class="form-floating">
-              <input type="email" class="form-control" id="floatingName" name="email" placeholder="Email">
+              <input type="email" class="form-control" value="{{ $data->email }}" id="floatingName" name="email" placeholder="Email">
               <label for="floatingName">Email</label>
             </div>
           </div>    
@@ -52,8 +53,9 @@
                 $no = 1;  
                 @endphp
                 
-                @foreach ($course as $data)
-                  <option value="{{ $data->id }}"> {{ $no++ }} - {{ $data->nama_course }}</option>
+                @foreach ($course as $crs)
+                  @php $cek1 = ($crs->id == $data->course_id) ? 'selected' : ''; @endphp
+                  <option value="{{ $crs->id }}" {{ $cek1 }}> {{ $no++ }} - {{ $crs->nama_course }}</option>
                 @endforeach
             </select>
           </div>
@@ -61,7 +63,7 @@
 
         <div class="col-6">
           <div class="form-floating">
-            <textarea class="form-control" placeholder="Feedback" name="isi_feedback" id="floatingTextarea" style="height: 100px;"></textarea>
+            <textarea class="form-control" placeholder="Feedback" name="isi_feedback" id="floatingTextarea" style="height: 100px;">{{ $data->isi_feedback }}</textarea>
             <label for="floatingTextarea">Feedback</label>
           </div>
         </div>

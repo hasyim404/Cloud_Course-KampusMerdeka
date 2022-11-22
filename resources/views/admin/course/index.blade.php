@@ -15,12 +15,10 @@
                         <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                             <li class="dropdown-header text-start">
-                            <h6>Filter</h6>
+                            <h6>Action</h6>
                             </li>
         
-                            <li><a href="{{ route('course.create') }}" class="btn btn-success btn-sm">Tambah Data</a></li>
-                            <li><a class="dropdown-item" href="#">This Month</a></li>
-                            <li><a class="dropdown-item" href="#">This Year</a></li>
+                            <li class="text-center px-3"><a href="{{ route('course.create') }}" class="btn btn-success btn-sm">Tambah Data</a></li>
                         </ul>
                     </div>
                     
@@ -48,15 +46,20 @@
                                     <td>{{ $data->nama_course }}</td>
                                     <td>{{ $data->deskripsi_course }}</td>
                                     <td>
-                                        <a href="{{ route('course.show',$data->id) }}" class="btn btn-primary btn-sm">
-                                            <i class="bi bi-eye"></i>
-                                        </a>
-                                        <a href="{{ route('course.show',$data->id) }}" class="btn btn-warning btn-sm">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <a href="{{ route('course.show',$data->id) }}" class="btn btn-danger btn-sm">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
+                                        <form method="POST" action="{{ route('course.destroy',$data->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <a href="{{ route('course.show',$data->id) }}" class="btn btn-primary btn-sm">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                            <a href="{{ route('course.edit',$data->id) }}" class="btn btn-warning btn-sm">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Hapus Course" 
+                                                    onclick="return confirm('Anda Yakin ingin menghapus data course {{ $data->nama_course }}?')">
+                                                    <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                     {{-- <td><span class="badge bg-success">Approved</span></td> --}}
                                 </tr>    
