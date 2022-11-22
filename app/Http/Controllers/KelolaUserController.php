@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\KelolaUsers;
 use Illuminate\Support\Facades\DB;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KelolaUserController extends Controller
 {
@@ -42,7 +45,7 @@ class KelolaUserController extends Controller
         $request->validate([
             'f_name' => 'required|min:3|max:45',
             'l_name' => 'required|min:3|max:45',
-            'no_telp' => 'required|max:20',
+            'no_telp' => 'required|numeric|unique:users|max:20',
             'username' => 'required|unique:users|min:3|max:15',
             'email' => 'required|email|unique:users|max:45',
             'password' => 'required',
@@ -176,5 +179,10 @@ class KelolaUserController extends Controller
         KelolaUsers::where('id',$id)->delete();
         return redirect()->route('users.index')
                          ->with('success','Data User Berhasil Dihapus');
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new UsersExport, 'Data Users.xlsx');
     }
 }

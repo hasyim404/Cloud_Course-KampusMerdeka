@@ -8,26 +8,18 @@
 
         <div class="col-xxl-12">
             <div class="card info-card sales-card">
+                <div class="d-flex flex-row p-3">
+                    <li class="dropdown-header"><a href="{{ route('users.create') }}" class="btn btn-primary btn-sm">
+                        <i class="bi bi-plus"></i> Tambah Data</a>
+                    </li>    
+                    <li class="dropdown-header text-center px-2"><a href="{{ url('get-users-excel') }}" class="btn btn-success btn-sm">
+                        <i class="bi bi-file-earmark-spreadsheet"></i> Export Excel</a>
+                    </li>     
+                </div>
                 
                 <div class="d-flex align-items-center mt-5">
-
-                    <div class="filter">
-                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <li class="dropdown-header text-start">
-                            <h6>Action</h6>
-                            </li>
-        
-                            <li class="text-center px-3"><a href="{{ route('users.create') }}" class="btn btn-success btn-sm">Tambah Data</a></li>
-                        </ul>
-                    </div>
                     
                     <div class="card-body">
-                        @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>    
-                        @endif
                         <table class="table table-borderless align-middle datatable">
                             <thead>
                                 <tr>
@@ -60,17 +52,17 @@
                                         @endempty
                                     </td>
                                     <td>
-                                        <form method="POST" action="{{ route('users.destroy',$data->id) }}">
+                                        <form method="POST" id="formDelete">
                                             @csrf
                                             @method('DELETE')
+
                                             <a href="{{ route('users.show',$data->id) }}" class="btn btn-primary btn-sm">
                                                 <i class="bi bi-eye"></i>
                                             </a>
                                             <a href="{{ route('users.edit',$data->id) }}" class="btn btn-warning btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Hapus Users" 
-                                                    onclick="return confirm('Anda Yakin ingin menghapus data user dengan username {{ $data->username }}?')">
+                                            <button data-action="{{ route('users.destroy',$data->id) }}" type="submit" class="btn btn-danger btn-sm btnDelete" title="Hapus Users">
                                                     <i class="bi bi-trash"></i>
                                             </button>
                                         </form>
@@ -88,4 +80,27 @@
         </div>
     </div>
 </div>
+@endsection
+@section('sweetalert2')
+<script type="text/javascript">
+    $('body').on('click', '.btnDelete', function(e) {
+    e.preventDefault();
+    var action = $(this).data('action');
+    Swal.fire({
+        title: 'Yakin ingin menghapus user {{ $data->f_name }} {{ $data->l_name }}?',
+        text: "Data yang sudah dihapus tidak bisa dikembalikan lagi",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Batal',
+        confirmButtonText: 'Hapus'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $('#formDelete').attr('action', action);
+            $('#formDelete').submit();
+        }
+    })
+})
+</script>
 @endsection

@@ -8,24 +8,36 @@
 
         <div class="col-xxl-12">
             <div class="card info-card sales-card">
+                <div class="d-flex flex-row p-3">
+                    <li class="dropdown-header"><a href="{{ route('feedback.create') }}" class="btn btn-primary btn-sm">
+                        <i class="bi bi-plus"></i> Tambah Data</a>
+                    </li>    
+                    <li class="dropdown-header text-center px-2"><a href="{{ url('get-feedback-pdf') }}" class="btn btn-danger btn-sm">
+                        <i class="bi bi-filetype-pdf"></i> Export PDF</a>
+                    </li>     
+                </div>
                 
-                <div class="d-flex align-items-center mt-5">
+                <div class="d-flex align-items-center mt-2">
 
-                    <div class="filter">
+                    {{-- <div class="filter">
                         <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                             <li class="dropdown-header text-start">
                             <h6>Action</h6>
                             </li>
         
-                            <li class="text-center px-3"><a href="{{ route('feedback.create') }}" class="btn btn-success btn-sm">Tambah Data</a></li>
+                            <li class="text-center px-3"><a href="{{ route('feedback.create') }}" class="btn btn-success btn-sm">
+                                <i class="bi bi-plus"></i> Tambah Data</a>
+                            </li>
+                            <li class="text-center px-3 py-2"><a href="{{ url('get-feedback-pdf') }}" class="btn btn-danger btn-sm">
+                                <i class="bi bi-filetype-pdf"></i> Export PDF</a>
+                            </li>
                         </ul>
-                    </div>
-                    
+                    </div> --}}
                     <div class="card-body">
                         @if ($message = Session::get('success'))
                         <div class="alert alert-success">
-                                <p>{{ $message }}</p>
+                            <p>{{ $message }}</p>
                         </div>    
                         @endif
                         <table class="table table-borderless datatable">

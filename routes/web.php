@@ -44,6 +44,7 @@ Route::get('/about', function () {
 Route::resource('admin/', AdminController::class);
 Route::resource('admin/dashboard', AdminController::class);
 Route::resource('admin/users', KelolaUserController::class);
-// Route::get('admin/user-edit/{id}', [KelolaUserController::class,'edit']);
+Route::get('get-users-excel', [KelolaUserController::class, 'exportExcel']);
 Route::resource('admin/course', CourseController::class);
 Route::resource('admin/feedback', FeedbackController::class);
+Route::get('get-feedback-pdf', [FeedbackController::class, 'generatePDF']);

@@ -33,6 +33,10 @@
 
 <body>
 
+  <!-- ======= Sweetalert ======= -->
+  @include('sweetalert::alert')
+  <!-- End Sweetalert -->
+
   <!-- ======= Header ======= -->
   @include('admin.partials.header')
   <!-- End Header -->
@@ -81,6 +85,12 @@
   <script src="{{ asset('template/admin/assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
   <script src="{{ asset('template/admin/assets/vendor/tinymce/tinymce.min.js') }}"></script>
   <script src="{{ asset('template/admin/assets/vendor/php-email-form/validate.js') }}"></script>
+
+  <!-- Sweetalert JS CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+  @yield('sweetalert2')
 
   <!-- Template Main JS File -->
   <script src="{{ asset('template/admin/assets/js/main.js') }}"></script>

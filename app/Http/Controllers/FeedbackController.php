@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Feedback;
 use App\Models\Course;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class FeedbackController extends Controller
 {
@@ -135,5 +136,17 @@ class FeedbackController extends Controller
         Feedback::where('id',$id)->delete();
         return redirect()->route('feedback.index')
                         ->with('success','Data Feedback Berhasil Dihapus');
+    }
+
+    public function generatePDF()
+    {
+        $feedback = Feedback::orderBy('id', 'DESC')->get();
+        $data = [
+            'title' => 'Data Feedback',
+            'date' => date('d/m/Y')
+        ];
+
+        $pdf = PDF::loadView('admin.feedback.getpdf', ['feedback' => $feedback], $data);
+        return $pdf->download('Data Feedback.pdf');
     }
 }
