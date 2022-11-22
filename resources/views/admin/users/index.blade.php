@@ -62,7 +62,7 @@
                                             <a href="{{ route('users.edit',$data->id) }}" class="btn btn-warning btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <button data-action="{{ route('users.destroy',$data->id) }}" type="submit" class="btn btn-danger btn-sm btnDelete" title="Hapus Users">
+                                            <button data-action="{{ route('users.destroy',$data->id) }}"  type="submit" class="btn btn-danger btn-sm btnDelete" title="Hapus Users">
                                                     <i class="bi bi-trash"></i>
                                             </button>
                                         </form>
@@ -83,11 +83,12 @@
 @endsection
 @section('sweetalert2')
 <script type="text/javascript">
+
     $('body').on('click', '.btnDelete', function(e) {
     e.preventDefault();
     var action = $(this).data('action');
     Swal.fire({
-        title: 'Yakin ingin menghapus user {{ $data->f_name }} {{ $data->l_name }}?',
+        title: 'Yakin ingin menghapus data ?',
         text: "Data yang sudah dihapus tidak bisa dikembalikan lagi",
         icon: 'warning',
         showCancelButton: true,

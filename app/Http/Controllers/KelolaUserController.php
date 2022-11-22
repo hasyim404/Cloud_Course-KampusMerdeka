@@ -45,7 +45,7 @@ class KelolaUserController extends Controller
         $request->validate([
             'f_name' => 'required|min:3|max:45',
             'l_name' => 'required|min:3|max:45',
-            'no_telp' => 'required|numeric|unique:users|max:20',
+            'no_telp' => 'required|numeric|unique:users|min:9|max:20',
             'username' => 'required|unique:users|min:3|max:15',
             'email' => 'required|email|unique:users|max:45',
             'password' => 'required',
