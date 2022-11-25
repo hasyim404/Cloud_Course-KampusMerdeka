@@ -12,7 +12,7 @@
                     <li class="dropdown-header"><a href="{{ route('feedback.create') }}" class="btn btn-primary btn-sm">
                         <i class="bi bi-plus"></i> Tambah Data</a>
                     </li>    
-                    <li class="dropdown-header text-center px-2"><a href="{{ url('get-feedback-pdf') }}" class="btn btn-danger btn-sm">
+                    <li class="dropdown-header text-center px-2"><a href="{{ url('admin/get-feedback-pdf') }}" class="btn btn-danger btn-sm">
                         <i class="bi bi-filetype-pdf"></i> Export PDF</a>
                     </li>     
                 </div>

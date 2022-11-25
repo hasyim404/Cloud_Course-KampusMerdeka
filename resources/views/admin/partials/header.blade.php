@@ -30,14 +30,18 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="{{ url('template/admin/assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            @empty(Auth::user()->foto)
+                <img src="{{ url('img/users_profile/!profile-default.jpg') }}" alt="Profile" class="rounded-circle">
+            @else
+                <img src="{{ url('img/users_profile')}}/{{Auth::user()->foto}}" alt="Profile" class="rounded-circle">
+            @endempty
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->f_name }} {{ Auth::user()->l_name }}</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+              <h6>{{ Auth::user()->f_name }} {{ Auth::user()->l_name }}</h6>
+              <span>{{ Auth::user()->email }}</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -54,10 +58,18 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                <button class="btn btn-danger btn-sm">
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Sign Out</span>
+                </button>
               </a>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+              </form>
             </li>
 
           </ul><!-- End Profile Dropdown Items -->

@@ -39,6 +39,10 @@
 
 <body>
 
+  <!-- ======= Sweetalert ======= -->
+  @include('sweetalert::alert')
+  <!-- End Sweetalert -->
+
   <!-- ======= Header ======= -->
   @include('landingpage.partials.navbar')
   <!-- End Header -->
