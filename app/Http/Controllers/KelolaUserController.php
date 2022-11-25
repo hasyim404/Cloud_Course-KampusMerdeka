@@ -9,6 +9,7 @@ use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class KelolaUserController extends Controller
 {
@@ -105,7 +106,7 @@ class KelolaUserController extends Controller
                 'no_telp' => $request->no_telp,
                 'username' => $request->username,
                 'email' => $request->email,
-                'password' => $request->password,
+                'password' => Hash::make($request->password),
                 'status' => $request->status,
                 'foto' => $fileName,
                 'role' => $request->role,
@@ -151,16 +152,49 @@ class KelolaUserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Validator::extend('without_spaces', function($attr, $value){
+            return preg_match('/^\S*$/u', $value);
+        });
+        
         $request->validate([
-            'f_name' => 'required|min:3|max:45',
+            'f_name' => 'required|min:2|max:45',
             'l_name' => 'required|min:3|max:45',
-            'no_telp' => 'required|max:20',
+            'no_telp' => ['required','without_spaces','regex:/^(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}$/','min:9','max:20'],
             'username' => 'required|min:3|max:15',
             'email' => 'required|email|max:45',
             'password' => 'required',
             'status' => 'required',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
             'role' => 'required',
+        ],
+        // Custom Error Code
+        [
+            'f_name.required' => 'Nama depan wajib di isi',
+            'f_name.min' => 'Nama depan terlalu pendek',
+            'f_name.max' => 'Nama depan terlalu panjang, maksimal 45 karakter',
+            'l_name.required' => 'Nama belakang wajib di isi',
+            'l_name.min' => 'Nama belakang terlalu pendek',
+            'l_name.max' => 'Nama belakang terlalu panjang, maksimal 45 karakter',
+            'no_telp.required' => 'Nomor Telepon wajib di isi',
+            'no_telp.without_spaces' => 'Nomor Telepon terdapat spasi',
+            'no_telp.regex' => 'Nomor Telepon tidak sesuai format',
+            'no_telp.unique' => 'Nomor Telepon telah digunakan',
+            'no_telp.min' => 'Nomor Telepon terlalu Pendek',
+            'no_telp.max' => 'Nomor Telepon terlalu Panjang',
+            'username.required' => 'Username wajib di isi',
+            'username.unique' => 'Username sudah dipakai',
+            'username.min' => 'Username terlalu Pendek, minimal 3 karakter',
+            'username.min' => 'Username terlalu Panjang, maksimal 15 karakter',
+            'email.required' => 'Email wajib di isi',
+            'email.email' => 'Harus berupa format email',
+            'email.unique' => 'Email sudah terdaftar',
+            'email.max' => 'Email terlalu panjang, maksimal 45 karakter',
+            'password.required' => 'Password wajib di isi',
+            'status.required' => 'Status wajib dipilih',
+            'foto.image' => 'Harus sebuah image dengan format jpg,jpeg,png',
+            'foto.mimes' => 'Hanya memperbolehkan format jpg,jpeg,png',
+            'foto.max' => 'Size terlalu besar, maksimal size 4MB',
+            'role.required' => 'Role wajib dipilih',
         ]);
 
         $foto = DB::table('users')->select('foto')->where('id',$id)->get();
@@ -189,7 +223,7 @@ class KelolaUserController extends Controller
                 'no_telp' => $request->no_telp,
                 'username' => $request->username,
                 'email' => $request->email,
-                'password' => $request->password,
+                'password' => Hash::make($request->password),
                 'status' => $request->status,
                 'foto' => $fileName,
                 'role' => $request->role,

@@ -12,7 +12,7 @@
                     <li class="dropdown-header"><a href="{{ route('users.create') }}" class="btn btn-primary btn-sm">
                         <i class="bi bi-plus"></i> Tambah Data</a>
                     </li>    
-                    <li class="dropdown-header text-center px-2"><a href="{{ url('get-users-excel') }}" class="btn btn-success btn-sm">
+                    <li class="dropdown-header text-center px-2"><a href="{{ url('admin/get-users-excel') }}" class="btn btn-success btn-sm">
                         <i class="bi bi-file-earmark-spreadsheet"></i> Export Excel</a>
                     </li>     
                 </div>

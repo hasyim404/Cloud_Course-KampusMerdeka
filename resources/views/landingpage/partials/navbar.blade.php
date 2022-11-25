@@ -29,7 +29,38 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>
-          <li><a class="getstarted scrollto" href="{{ url('/admin') }}">Login</a></li>
+
+          @guest
+            @if (Route::has('login'))
+              <li>
+                <a class="getstarted scrollto" href="{{ route('login') }}">{{ __('Login') }}</a>
+              </li>
+            @endif
+          @else
+            <li class="dropdown">
+              <a href="#">
+                <span>{{ Auth::user()->username }}</span> 
+                <i class="bi bi-chevron-down"></i>
+              </a>
+              <ul>
+                <li>
+                  <a class="dropdown-item" href="{{ route('logout') }}"
+                      onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();">
+
+                      <button class="btn btn-danger btn-md">
+                        {{ __('Logout') }}  
+                      </button>
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                      @csrf
+                  </form>
+                </li>
+              </ul>
+            </li>
+          @endguest
+          
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>

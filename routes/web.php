@@ -5,6 +5,7 @@ use App\Http\Controllers\KelolaUserController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FeedbackController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,10 +42,16 @@ Route::get('/about', function () {
 
 
 // Admin Routes
-Route::resource('admin/', AdminController::class);
-Route::resource('admin/dashboard', AdminController::class);
-Route::resource('admin/users', KelolaUserController::class);
-Route::get('get-users-excel', [KelolaUserController::class, 'exportExcel']);
-Route::resource('admin/course', CourseController::class);
-Route::resource('admin/feedback', FeedbackController::class);
-Route::get('get-feedback-pdf', [FeedbackController::class, 'generatePDF']);
+Route::prefix('/admin')->middleware(['auth', 'role:Admin'])->group(function () {
+    Route::resource('/', AdminController::class);
+    Route::resource('/dashboard', AdminController::class);
+    Route::resource('/users', KelolaUserController::class);
+    Route::get('get-users-excel', [KelolaUserController::class, 'exportExcel']);
+    Route::resource('/course', CourseController::class);
+    Route::resource('/feedback', FeedbackController::class);
+    Route::get('get-feedback-pdf', [FeedbackController::class, 'generatePDF']);     
+});
+
+Auth::routes();
+
+Route::get('/home1', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
