@@ -55,9 +55,8 @@
   
   <div class="container">
     <div class="container px-5 py-5 px-md-5 text-center text-lg-start my-5" style="background-image: linear-gradient( 135deg, #a3b5fd 10%, #4f6296 100%); border-radius: 30px;">
-        <div class="row gx-lg-5 align-items-center mb-5">
-          <div class="col-lg-3"></div>
-          {{-- <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+        <div class="row gx-lg-5 align-items-top mb-5">
+          <div class="col-lg-6 mb-5 mb-lg-0 d-none d-lg-block" style="z-index: 10">
             <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
               The best offer <br />
               <span style="color: hsl(218, 81%, 75%)">for your business</span>
@@ -68,7 +67,7 @@
               dolorum consequatur nulla, neque debitis eos reprehenderit quasi
               ab ipsum nisi dolorem modi. Quos?
             </p>
-          </div> --}}
+          </div>
     
           <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
             <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
@@ -229,7 +228,6 @@
             </div>
           </div>
 
-          <div class="col-lg-3"></div>
         </div>
       </div>
   </div>

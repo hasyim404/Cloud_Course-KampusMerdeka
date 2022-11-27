@@ -44,13 +44,20 @@
               </a>
               <ul>
                 <li>
-                  <a class="dropdown-item" href="{{ route('logout') }}"
+                  <a class="" href="">
+                    {{-- <button class="btn btn-primary btn-sm px-4"> --}}
+                      <i class="bi bi-person"></i> My Profile
+                    {{-- </button> --}}
+                  </a>
+                </li><hr>
+                <li>
+                  <a class="" href="{{ route('logout') }}"
                       onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">
 
-                      <button class="btn btn-danger btn-md">
+                      {{-- <button class="btn btn-danger btn-md"> --}}
                         {{ __('Logout') }}  
-                      </button>
+                      {{-- </button> --}}
                   </a>
 
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
