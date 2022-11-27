@@ -28,6 +28,9 @@
 
   <!-- Template Main CSS File -->
   <link href="{{ asset('template/admin/assets/css/style.css') }}" rel="stylesheet">
+
+  <!-- Livewire Laravel -->
+  @livewireStyles
   
 </head>
 
@@ -94,6 +97,9 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('template/admin/assets/js/main.js') }}"></script>
+
+  <!-- Livewire Laravel -->
+  @livewireScripts
 
 </body>
 
