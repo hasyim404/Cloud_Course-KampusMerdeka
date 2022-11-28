@@ -187,13 +187,8 @@
                     </div>
                     <div class="col-md-6 mb-4">
                       <div class="form-floating">
-                        <input type="password" id="password-confirm" class="form-control" name="password_confirmation" placeholder="Confirm Password" />
+                        <input type="password" id="password-confirm" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" placeholder="Confirm Password" />
                         <label class="form-label" for="password-confirm">Confirm Password</label>
-                        @error('password_confirmation')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                       </div>
                     </div>
                   </div>

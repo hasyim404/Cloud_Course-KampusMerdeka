@@ -28,8 +28,8 @@
                                     {{-- <th scope="col">Username</th> --}}
                                     <th scope="col">Email</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">Role</th>
                                     <th scope="col">Active</th>
+                                    <th scope="col">Role</th>
                                     <th scope="col">Foto</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -44,10 +44,10 @@
                                     {{-- <td>{{ $data->username }}</td> --}}
                                     <td>{{ $data->email }}</td>
                                     <td>{{ $data->status }}</td>
-                                    <td>{{ $data->role }}</td>
                                     <td>
                                         @livewire('user-is-active', ['model' => $data, 'field' => 'isactive'], key($data->id))
                                     </td>
+                                    <td>{{ $data->role }}</td>
                                     <td>
                                         @empty($data->foto)
                                             <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="50px"  alt="Profile" class="rounded-circle">
