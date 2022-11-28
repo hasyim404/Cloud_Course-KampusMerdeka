@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KelolaUserController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,6 +40,11 @@ Route::get('/course', function () {
 Route::get('/about', function () {
     return view('landingpage.about');
 });
+
+Route::put('/my-profile', [ProfileController::class, 'updatePassword'])->name('update-password');
+Route::resource('my-profile', ProfileController::class);
+
+
 
 
 // Admin Routes

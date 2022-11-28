@@ -28,6 +28,7 @@
                                     {{-- <th scope="col">Username</th> --}}
                                     <th scope="col">Email</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Active</th>
                                     <th scope="col">Role</th>
                                     <th scope="col">Foto</th>
                                     <th scope="col">Action</th>
@@ -43,6 +44,9 @@
                                     {{-- <td>{{ $data->username }}</td> --}}
                                     <td>{{ $data->email }}</td>
                                     <td>{{ $data->status }}</td>
+                                    <td>
+                                        @livewire('user-is-active', ['model' => $data, 'field' => 'isactive'], key($data->id))
+                                    </td>
                                     <td>{{ $data->role }}</td>
                                     <td>
                                         @empty($data->foto)
@@ -85,23 +89,34 @@
 <script type="text/javascript">
 
     $('body').on('click', '.btnDelete', function(e) {
-    e.preventDefault();
-    var action = $(this).data('action');
-    Swal.fire({
-        title: 'Yakin ingin menghapus data ?',
-        text: "Data yang sudah dihapus tidak bisa dikembalikan lagi",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: 'Batal',
-        confirmButtonText: 'Hapus'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $('#formDelete').attr('action', action);
-            $('#formDelete').submit();
-        }
+        e.preventDefault();
+        var action = $(this).data('action');
+        Swal.fire({
+            title: 'Yakin ingin menghapus data ?',
+            text: "Data yang sudah dihapus tidak bisa dikembalikan lagi",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Hapus'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('#formDelete').attr('action', action);
+                $('#formDelete').submit();
+            }
+        })
     })
-})
+
+    $('body').on('change', '.btnIsActive', function(e) {
+        e.preventDefault();
+        var action = $(this).data('action');
+        Swal.fire({
+            title: 'Status Active Berhasil Di ubah',
+            icon: 'success',
+            showConfirmButton: true,
+            timer: 3000
+        })
+    })
 </script>
 @endsection
