@@ -28,9 +28,9 @@
                                     {{-- <th scope="col">Username</th> --}}
                                     <th scope="col">Email</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">Active</th>
-                                    <th scope="col">Role</th>
-                                    <th scope="col">Foto</th>
+                                    <th scope="col" class="text-center">Active</th>
+                                    <th scope="col" class="text-center">Role</th>
+                                    <th scope="col" class="text-center">Foto</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -47,8 +47,8 @@
                                     <td>
                                         @livewire('user-is-active', ['model' => $data, 'field' => 'isactive'], key($data->id))
                                     </td>
-                                    <td>{{ $data->role }}</td>
-                                    <td>
+                                    <td class="text-center">{{ $data->role }}</td>
+                                    <td class="text-center">
                                         @empty($data->foto)
                                             <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="50px"  alt="Profile" class="rounded-circle">
                                         @else

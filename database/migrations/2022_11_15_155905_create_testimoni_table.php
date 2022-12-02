@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('testimoni', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama',100);
+            $table->string('email',45)->unique();
             $table->text('isi_pesan');
+            $table->boolean('status')->default(0);
             $table->string('foto',45)->nullable();
             $table->timestamps();
         });
