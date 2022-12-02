@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -111,7 +112,8 @@ class RegisterController extends Controller
         //     'email' => $data['email'],
         //     'password' => Hash::make($data['password']),
         // ]);
-
+        
+        Alert::success('Registrasi Berhasil', 'Terimakasih telah melakukan registrasi. Akun mu akan di proses untuk aktivasi oleh admin, silahkan cek kembali paling lambat dalam 3x24jam')->persistent('Close');
         return User::create([
             'f_name' => $data['f_name'],
             'l_name' => $data['l_name'],

@@ -42,9 +42,7 @@ Route::get('/about', function () {
 });
 
 Route::put('/my-profile', [ProfileController::class, 'updatePassword'])->name('update-password');
-Route::resource('my-profile', ProfileController::class);
-
-
+Route::resource('my-profile', ProfileController::class)->middleware('auth');
 
 
 // Admin Routes
@@ -52,6 +50,7 @@ Route::prefix('/admin')->middleware(['auth', 'role:Admin'])->group(function () {
     Route::resource('/', AdminController::class);
     Route::resource('/dashboard', AdminController::class);
     Route::resource('/users', KelolaUserController::class);
+    Route::put('/users/{id}/update-password', [KelolaUserController::class, 'updatePasswordAdmin']);
     Route::get('get-users-excel', [KelolaUserController::class, 'exportExcel']);
     Route::resource('/course', CourseController::class);
     Route::resource('/feedback', FeedbackController::class);
