@@ -5,6 +5,7 @@ use App\Http\Controllers\KelolaUserController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestimoniController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,9 +55,12 @@ Route::prefix('/admin')->middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('get-users-excel', [KelolaUserController::class, 'exportExcel']);
     Route::resource('/course', CourseController::class);
     Route::resource('/feedback', FeedbackController::class);
-    Route::get('get-feedback-pdf', [FeedbackController::class, 'generatePDF']);     
+    Route::get('get-feedback-pdf', [FeedbackController::class, 'generatePDF']);  
+    Route::resource('/testimoni', TestimoniController::class);
+    Route::get('get-testimoni-pdf', [TestimoniController::class, 'generatePDF']);  
+    Route::get('get-testimoni-excel', [TestimoniController::class, 'exportExcel']);
 });
 
 Auth::routes();
 
-Route::get('/home1', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home1', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
