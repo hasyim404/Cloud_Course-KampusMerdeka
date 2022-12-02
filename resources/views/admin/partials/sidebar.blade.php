@@ -59,11 +59,23 @@
       <li class="nav-item">
         <a class="nav-link {{ Request::is('admin/testimoni') || Request::is('admin/testimoni/create') || Request::is('admin/testimoni/*') || Request::is('admin/testimoni/*/edit') ? "" : "collapsed" }}" 
           href="{{ url('admin/testimoni') }}">
-          <i class="bi bi-grid"></i>
+          <i class="bi bi-chat-right-quote"></i>
           
           <span>Testimoni</span>
         </a>
       </li>
+
+      <hr class="px-5">
+      <li class="nav-heading">Go To</li>
+
+      <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ url('/home') }}">
+              <i class="bi bi-house"></i>
+              <span>Landingpage</span>
+          </a>
+      </li>
+      
+      <!-- End Search Bar -->
       <!-- End Testimoni Nav -->
 
     </ul>

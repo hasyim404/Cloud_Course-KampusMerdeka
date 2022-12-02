@@ -12,23 +12,6 @@
           <li><a class="nav-link scrollto {{ Request::is('/') || Request::is('/home') ? "active" : "" }}" href="{{ url('/home') }}">Home</a></li>
           <li><a class="nav-link scrollto {{ Request::is('course') ? "active" : "" }}" href="{{ url('/course') }}">Course</a></li>
           <li><a class="nav-link scrollto {{ Request::is('about') ? "active" : "" }}" href="{{ url('/about') }}">About</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#"><i class="bi bi-person"></i> Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>
 
           @guest
             @if (Route::has('login'))
@@ -39,13 +22,14 @@
           @else
             <li class="dropdown">
               <a href="#">
+                <span class="m-2">{{ Auth::user()->username }}</span> 
+
                 @if(!empty(Auth::user()->foto)) 
                     <img src="{{ url('img/users_profile')}}/{{Auth::user()->foto}}"height="35px" alt="Profile"  class="rounded-circle">
                 @else
                     <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="35px" alt="Profile" class="rounded-circle">
                 @endif 
-                <span class="m-2">{{ Auth::user()->username }}</span> 
-                <i class="bi bi-chevron-down"></i>
+                {{-- <i class="bi bi-chevron-down"></i> --}}
               </a>
               <ul>
                 <li>
@@ -53,6 +37,14 @@
                     <span>My Profile</span>
                   </a>
                 </li>
+                @if (Auth::user()->role == 'Admin')
+                <li>
+                  <a href="{{ url('/admin/dashboard') }}">
+                    <span>Go to Admin</span>
+                  </a>
+                </li>
+                @endif
+                <hr class="mx-3">
                 <li>
                   <a class="text-danger" href="{{ route('logout') }}"
                       onclick="event.preventDefault();

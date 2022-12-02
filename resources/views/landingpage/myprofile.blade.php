@@ -197,12 +197,12 @@
             
                         </div>
           
-                        {{-- <div class="text-end">
-                            <a class="btn btn-primary btn-md" href=" {{ url('/home') }}">
-                                <i class="bi bi-caret-left-square"></i> Back
-                            </a>  
-                        </div> --}}
                     </div><!-- End Bordered Tabs -->
+                    <div class="text-end">
+                        <a class="btn btn-primary btn-md" href=" {{ url()->previous() }}">
+                            <i class="bi bi-caret-left-square"></i> Back
+                        </a>  
+                    </div>
                 </div>    
                 
             </div>

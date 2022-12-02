@@ -17,7 +17,7 @@
                     </li>     
                 </div>
                 
-                <div class="d-flex align-items-center mt-5">
+                <div class="d-flex align-items-center mt-2">
                     
                     <div class="card-body">
                         <table class="table table-borderless align-middle datatable">
