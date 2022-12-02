@@ -60,12 +60,12 @@
                                             @csrf
                                             @method('DELETE')
 
-                                            <a href="{{ route('users.show',$data->id) }}" class="btn btn-primary btn-sm">
-                                                <i class="bi bi-eye"></i>
-                                            </a>
-                                            <a href="{{ route('users.edit',$data->id) }}" class="btn btn-warning btn-sm">
+                                            <a href="{{ route('users.show',$data->id) }}" class="btn btn-warning btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
+                                            {{-- <a href="{{ route('users.edit',$data->id) }}" class="btn btn-warning btn-sm">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a> --}}
                                             <button data-action="{{ route('users.destroy',$data->id) }}"  type="submit" class="btn btn-danger btn-sm btnDelete" title="Hapus Users">
                                                     <i class="bi bi-trash"></i>
                                             </button>
