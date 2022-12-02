@@ -120,12 +120,49 @@
         <!-- End Left side columns -->
 
         <div class="col-lg-8">
-            <div class="card">
+            <div class="card" >
                 <div class="card-body">
-                    <h5 class="card-title">Another Chart Dhasboard</h5>
+                    <h5 class="card-title">Testimoni <span>| Yang Masuk</span></h5>
 
-                    <div class="d-flex align-items-center">
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis ipsum quasi deserunt ipsam qui architecto consequuntur consectetur aut labore, voluptatum corrupti debitis harum placeat earum quod inventore provident odit quaerat?</p>
+                    <div class="table-responsive">
+                        <table class="table table-borderless datatable" id="myTable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Nama&nbsp;User</th>
+                                    <th scope="col">Isi&nbsp;Testimoni</th>
+                                    <th class="text-center" scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @php $no=1; @endphp
+                                @foreach ( $testimoni as $data )
+                                @php
+                                    switch ($data->status) {
+                                        case 0:
+                                            $class = 'bg-danger';
+                                            $status = 'Hide';
+                                            break;
+                                        case 1:
+                                            $class = 'bg-success';
+                                            $status = 'Show';
+                                            break;
+
+                                        default;
+                                        break;
+                                    };
+                                @endphp
+                                <tr>
+                                    <th scope="row">{{ $no++ }}.</th>
+                                    <td>{{ $data->nama }}</td>
+                                    <td>{{ $data->isi_pesan }}</td>
+                                    <td class="text-center"><span class="badge {{ $class }}">{{ $status }}</span></div></td>
+                                </tr>    
+                                @endforeach
+                                
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -138,44 +175,42 @@
             
                     <!-- Pie Chart -->
                     <div id="pieChart" style="min-height: 400px;" class="echart"></div>
-            
                         <script>
-
                             document.addEventListener("DOMContentLoaded", () => {
-                            echarts.init(document.querySelector("#pieChart")).setOption({
-                                title: {
-                                text: '',
-                                subtext: '',
-                                left: 'center'
-                                },
-                                tooltip: {
-                                trigger: 'item'
-                                },
-                                legend: {
-                                orient: 'vertical',
-                                left: 'left'
-                                },
-                                series: [{
-                                name: 'Access From',
-                                type: 'pie',
-                                radius: '50%',
-                                data: [
-                                    @foreach ($ar_status as $status)
-                                        {
-                                        value: {{ $status->jumlah }},
-                                        name: '{{ $status->status }}'
-                                        },    
-                                    @endforeach
-                                ],
-                                emphasis: {
-                                    itemStyle: {
-                                    shadowBlur: 10,
-                                    shadowOffsetX: 0,
-                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                                    }
-                                }
-                                }]
-                            });
+                                echarts.init(document.querySelector("#pieChart")).setOption({
+                                    title: {
+                                        text: '',
+                                        subtext: '',
+                                        left: 'center'
+                                    },
+                                    tooltip: {
+                                        trigger: 'item'
+                                    },
+                                    legend: {
+                                        orient: 'vertical',
+                                        left: 'left'
+                                    },
+                                    series: [{
+                                        name: 'Access From',
+                                        type: 'pie',
+                                        radius: '50%',
+                                        data: [
+                                            @foreach ($ar_status as $status)
+                                                {
+                                                value: {{ $status->jumlah }},
+                                                name: '{{ $status->status }}'
+                                                },    
+                                            @endforeach
+                                        ],
+                                        emphasis: {
+                                            itemStyle: {
+                                                shadowBlur: 10,
+                                                shadowOffsetX: 0,
+                                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                            }
+                                        }
+                                    }]
+                                });
                             });
                         </script>
                     </div>

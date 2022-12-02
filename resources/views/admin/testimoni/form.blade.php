@@ -6,7 +6,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-      <h5 class="card-title text-center">Tambah Testimoni</h5>
+      <h5 class="card-title text-center my-3">Tambah Testimoni</h5>
 
       <!-- Floating Labels Form -->
       <form class="row g-3" method="POST" action="{{ route('testimoni.store') }}" enctype="multipart/form-data">
@@ -55,7 +55,7 @@
           </div>
           
           <div class="row mb-3">
-              <div class="col-md">
+              <div class="col-md-6">
                   <label class="form-label" for="password">Foto</label>
                   <input type="file" class="form-control @error('foto') is-invalid @enderror" id="floatingName" name="foto" >
                   @error('foto')

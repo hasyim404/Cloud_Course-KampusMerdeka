@@ -6,65 +6,84 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-      <h5 class="card-title">Tambah Feedback</h5>
+      <h5 class="card-title text-center my-3">Tambah Feedback</h5>
 
       <!-- Floating Labels Form -->
       <form class="row g-3" method="POST" action="{{ route('feedback.store') }}">
         @csrf
 
-        @if ($errors->any())
-          <div class="alert alert-danger">
-            {{-- <strong>Whoops!</strong> Ada Salah saat input data --}}
-            <strong>Error!</strong>
-            {{-- <br><br> --}}
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>                        
-                @endforeach
-            </ul>
-          </div>    
-        @endif
-
-        <div class="row g-3">
-          <div class="col-md-6">
-            <div class="form-floating">
-              <input type="text" class="form-control" id="floatingName" name="nama" placeholder="Nama User">
-              <label for="floatingName">Nama User</label>
-            </div>
-          </div>
-        </div>
-
-        <div class="row g-3">
-          <div class="col-md-6">
-            <div class="form-floating">
-              <input type="email" class="form-control" id="floatingName" name="email" placeholder="Email">
-              <label for="floatingName">Email</label>
-            </div>
-          </div>    
-        </div>
+        <div class="col-md-3"></div>
         
-        <div class="row g-3">
-          <div class="col-md-3">
-            <label for="validationDefault04" class="form-label">Course</label>
-            <select class="form-select" id="validationDefault04" name="course_id" required>
-              <option selected disabled value="">-- Pilih Course --</option>
-                @php
-                $no = 1;  
-                @endphp
-                
-                @foreach ($course as $data)
-                  <option value="{{ $data->id }}"> {{ $no++ }} - {{ $data->nama_course }}</option>
-                @endforeach
-            </select>
+        <div class="col-md-6">
+          <div class="row g-3 mb-3">
+            <div class="col-md-12">
+              <div class="form-floating">
+                <input type="text" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}" id="floatingName" name="nama" placeholder="Nama User">
+                <label for="floatingName">Nama User</label>
+                @error('nama')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>  
+                @enderror
+              </div>
+            </div>
           </div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-md-12">
+              <div class="form-floating">
+                <input type="text" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" id="floatingName" name="email" placeholder="Email">
+                <label for="floatingName">Email</label>
+                @error('email')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>  
+                @enderror
+              </div>
+            </div>    
+          </div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-md-12">
+              <div class="form-floating">
+                <textarea class="form-control @error('isi_feedback') is-invalid @enderror" placeholder="Feedback" name="isi_feedback" id="floatingTextarea" style="height: 100px;">{{ old('isi_feedback') }}</textarea>
+                <label for="floatingTextarea">Feedback</label>
+                @error('isi_feedback')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>  
+                @enderror
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <label for="validationDefault04" class="form-label">Course</label>
+              <select class="form-select @error('course_id') is-invalid @enderror" id="validationDefault04" name="course_id">
+                <option selected disabled value="">-- Pilih Course --</option>
+                  @php
+                  $no = 1;  
+                  @endphp
+                  
+                  @foreach ($course as $data)
+                    @php
+                      $select1 = (old('course_id') == $data->id) ? 'selected' : '';
+                    @endphp
+                    <option value="{{ $data->id }}" {{ $select1 }}> {{ $no++ }} - {{ $data->nama_course }}</option>
+                  @endforeach
+              </select>
+              @error('course_id')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>  
+              @enderror
+            </div>
+          </div>
+          
         </div>
 
-        <div class="col-6">
-          <div class="form-floating">
-            <textarea class="form-control" placeholder="Feedback" name="isi_feedback" id="floatingTextarea" style="height: 100px;"></textarea>
-            <label for="floatingTextarea">Feedback</label>
-          </div>
-        </div>
+        <div class="col-md-3"></div>
 
         <div class="text-center">
           <button type="submit" class="btn btn-primary">Submit</button>
@@ -76,5 +95,20 @@
 
     </div>
   </div>
+@endsection
+
+@section('sweetalert2')
+<script>
+  @if ($errors->any())
+  {
+    Swal.fire({
+      title: 'Error',
+      text: 'Gagal menambahkan Feedback',
+      icon: 'error',
+      showConfirmButton: false
+    })
+  };
+  @endif
+</script>
 @endsection
 

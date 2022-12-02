@@ -20,7 +20,7 @@
                     </li>     
                 </div>
                 
-                <div class="d-flex align-items-center mt-5">
+                <div class="d-flex align-items-center mt-2">
                     
                     <div class="card-body">
                         <div class="table-responsive-lg">
