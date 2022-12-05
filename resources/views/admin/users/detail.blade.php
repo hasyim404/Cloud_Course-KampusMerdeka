@@ -18,9 +18,9 @@
         <div class="card">
           <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
             @empty($data->foto)
-                <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="120px" alt="Profile" class="rounded-circle">
+                <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="120px" width="120px" alt="Profile" class="rounded-circle">
             @else
-                <img src="{{ url('img/users_profile')}}/{{$data->foto}}" height="120px" alt="Profile" class="rounded-circle">
+                <img src="{{ url('img/users_profile')}}/{{$data->foto}}" height="120px" width="120px" alt="Profile" class="rounded-circle">
             @endempty
             <h2>{{ $data->f_name }} {{ $data->l_name }}</h2>
             <h3>{{ $data->email }}</h3>
@@ -103,9 +103,9 @@
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
                           @if(!empty($data->foto)) 
-                              <img src="{{ url('img/users_profile')}}/{{$data->foto}}"height="120px" alt="Profile"  class="rounded p-2 border">
+                              <img src="{{ url('img/users_profile')}}/{{$data->foto}}" height="120px" width="120px" alt="Profile"  class="rounded p-2 border">
                           @else
-                              <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="120px" alt="Profile" class="rounded p-2 border">
+                              <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="120px" width="120px" alt="Profile" class="rounded p-2 border">
                           @endif 
                           <div class="pt-2">
                               <div class="col-md-6">

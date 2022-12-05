@@ -11,13 +11,13 @@
 
         <div class="card">
           <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-            @if (empty($data->foto))
-                <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="120px" alt="Profile" class="rounded-circle">
-            @elseif (!empty($data->foto))
-                <img src="{{ url('img/users_profile/testimoni_users_profile')}}/{{$data->foto}}" height="120px" alt="Profile" class="rounded-circle">
-            @elseif (!empty($data->foto))
-                <img src="{{ url('img/users_profile')}}/{{$data->foto}}" height="120px" alt="Profile" class="rounded-circle">
-            @endif
+            @if( empty($data->foto) ) 
+                <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="120px" width="120px" alt="Profile" class="rounded-circle"> 
+            @elseif (file_exists( public_path('img/users_profile/'.$data->foto) ))
+                <img src="{{ url('img/users_profile')}}/{{$data->foto}}" height="120px" width="120px" alt="Profile"  class="rounded-circle">
+            @elseif (file_exists( public_path('img/users_profile/testimoni_users_profile/'.$data->foto) ))
+                <img src="{{ url('img/users_profile/testimoni_users_profile')}}/{{$data->foto}}" height="120px" width="120px" alt="Profile"  class="rounded-circle">
+            @endif 
             
             <h2>{{ $data->nama }}</h2>
             <h3>{{ $data->email }}</h3>
@@ -80,13 +80,13 @@
                   <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">User Image</label>
                       <div class="col-md-8 col-lg-9">
-                          @if(!empty($data->foto)) 
-                              <img src="{{ url('img/users_profile/testimoni_users_profile')}}/{{$data->foto}}"height="120px" alt="Profile"  class="rounded p-2 border">
-                          @elseif (!empty($data->foto))
-                              <img src="{{ url('img/users_profile')}}/{{$data->foto}}"height="120px" alt="Profile"  class="rounded p-2 border">
-                          @else
-                              <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="120px" alt="Profile" class="rounded p-2 border">
-                          @endif 
+                        @if( empty($data->foto) ) 
+                            <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="120px" width="120px" alt="Profile" class="rounded p-2 border"> 
+                        @elseif (file_exists( public_path('img/users_profile/'.$data->foto) ))
+                            <img src="{{ url('img/users_profile')}}/{{$data->foto}}" height="120px" width="120px" alt="Profile"  class="rounded p-2 border">
+                        @elseif (file_exists( public_path('img/users_profile/testimoni_users_profile/'.$data->foto) ))
+                            <img src="{{ url('img/users_profile/testimoni_users_profile')}}/{{$data->foto}}" height="120px" width="120px" alt="Profile"  class="rounded p-2 border">
+                        @endif 
                           <div class="pt-2">
                               <div class="col-md-7">
                                   <input type="file" class="form-control @error('foto') is-invalid @enderror" id="floatingName" name="foto" placeholder="Foto">

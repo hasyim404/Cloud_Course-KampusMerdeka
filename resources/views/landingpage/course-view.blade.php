@@ -24,76 +24,73 @@
 
                 <div class="col-lg-8 entries">
 
-                    {{-- <article class="entry">
-
-                        <div class="entry-img">
-                            <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
-                        </div>
-
-                        <h2 class="entry-title">
-                            <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
-                        </h2>
-
-                        <div class="entry-meta">
-                            <ul>
-                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                            <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="entry-content">
-                            <p>
-                            Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                            Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde soluta. Est cum et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda perferendis dolore.
-                            </p>
-                            <div class="read-more">
-                            <a href="blog-single.html">Read More</a>
-                            </div>
-                        </div>
-
-                    </article><!-- End blog entry --> --}}
-
                     <div class="sidebar">
-                        <h1 class="fw-bold" style="color: #012970">Course Tersedia</h1>
+                        {{-- <h1 class="fw-bold" style="color: #012970">Course Tersedia</h1> --}}
                         <div class="sidebar-item recent-posts pt-5">
-
-                            @foreach ( $course as $data )
                             
                                 <div class="post-item clearfix ">
-                                    <a href="{{ route('daftar-course.show',$data->id) }}">
                                         <div class="row">
                                             <div class="col col-lg-4">
-                                                @empty($data->foto)
+                                                @empty($course->foto)
                                                     <img class="me-5 rounded" src="{{ url('img/banner_course/!banner-default.jpg') }}" style="width: 200px !important" alt="Banner-Course" >
                                                 @else
-                                                    <img class="me-5 rounded" src="{{ url('img/banner_course')}}/{{$data->foto}}" style="width: 200px !important" alt="Banner-Course" >
+                                                    <img class="me-5 rounded" src="{{ url('img/banner_course')}}/{{$course->foto}}" style="width: 200px !important" alt="Banner-Course" >
                                                 @endempty  
                                             </div>   
                                             <div class="col col-lg-8">
-                                                <h3 class="text-dark fw-semibold">{{ $data->nama_course }}</h3>
-                                                <time class="m-auto"><i class="bi bi-clock-history"></i> {{ $data->updated_at->format('Y M d') }}</time>
-                                                <span class="text-secondary">{{ $data->deskripsi_course }}</span>    
+                                                <h3 class="text-dark fw-semibold">{{ $course->nama_course }}</h3>
+                                                <time class="m-auto"><i class="bi bi-clock-history"></i> {{ $course->updated_at->format('Y M d') }}</time>
+                                                <span class="text-secondary">{{ $course->deskripsi_course }}</span>    
                                             </div>
                                         </div>
+
+                                        <div class="accordion mt-5" id="accordionExample">
+                                            @foreach ($modul as $data_modul)
+                                            @php
+                                                $target = $data_modul->id;
+                                            @endphp
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="headingOne">
+                                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$target}}" aria-expanded="true" aria-controls="collapse{{$target}}">
+                                                    {{ $data_modul->jdl_modul }}
+                                                  </button>
+                                                </h2>
+                                                <div id="collapse{{$target}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                                  <div class="accordion-body">
+                                                    @foreach ($filemateri as $data_materi)
+                                                        <a href="{{ $data_materi->id }}">
+                                                            {{ $data_materi->id }} <br><br>
+                                                        </a>
+                                                    @endforeach
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                        </div>
+
+                                        {{-- @foreach ($modul as $data)
+                                            <h2>{{ $data->jdl_modul }}</h2>
+                                        @endforeach
+
+                                        @foreach ($filemateri as $data)
+                                            <h2>{{ $data->pdfmateri }}</h2>
+                                        @endforeach --}}
                                         
-                                    </a>
-                                </div> <br>  <hr> <br>     
+                                </div> 
+                                {{-- <br>  <hr> <br>      --}}
                             
-                            
-                            @endforeach
 
                         </div><!-- End sidebar recent posts-->
                     </div>
                     
 
-                    <div class="blog-pagination">
+                    {{-- <div class="blog-pagination">
                         <ul class="justify-content-center">
                             <li><a href="#">1</a></li>
                             <li class="active"><a href="#">2</a></li>
                             <li><a href="#">3</a></li>
                         </ul>
-                    </div>
+                    </div> --}}
 
                 </div><!-- End blog entries list -->
 
@@ -114,7 +111,7 @@
 
                             @foreach ( $pag_course as $data )
                                 <div class="post-item clearfix">
-                                    <a href="{{ route('daftar-course.show',$data->nama_course) }}">
+                                    <a href="{{ route('daftar-course.show',$data->id) }}">
                                         @empty($data->foto)
                                             <img src="{{ url('img/banner_course/!banner-default.jpg') }}" alt="Banner-Course" >
                                         @else

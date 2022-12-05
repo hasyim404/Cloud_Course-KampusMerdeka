@@ -39,7 +39,7 @@
                                     <td>{{ $data->isi_feedback }}</td>
                                     <td>{{ $data->course->nama_course }}</td>
                                     <td>
-                                        <form method="POST" action="{{ route('feedback.destroy',$data->id) }}">
+                                        <form method="POST" id="formDelete">
                                             @csrf
                                             @method('DELETE')
                                             {{-- <a href="{{ route('feedback.show',$data->id) }}" class="btn btn-primary btn-sm">
@@ -48,8 +48,7 @@
                                             <a href="{{ route('feedback.edit',$data->id) }}" class="btn btn-warning btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Hapus Feedback" 
-                                                    onclick="return confirm('Anda Yakin ingin menghapus data Feedback {{ $data->nama }}?')">
+                                            <button data-action="{{ route('feedback.destroy',$data->id) }}" type="submit" class="btn btn-danger btn-sm btnDelete" title="Hapus Feedback">
                                                     <i class="bi bi-trash"></i>
                                             </button>
                                         </form>
@@ -67,4 +66,30 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('sweetalert2')
+<script type="text/javascript">
+
+    $('body').on('click', '.btnDelete', function(e) {
+        e.preventDefault();
+        var action = $(this).data('action');
+        Swal.fire({
+            title: 'Yakin ingin menghapus data ?',
+            text: "Data yang sudah dihapus tidak bisa dikembalikan lagi",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Hapus'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('#formDelete').attr('action', action);
+                $('#formDelete').submit();
+            }
+        })
+    })
+
+</script>
 @endsection

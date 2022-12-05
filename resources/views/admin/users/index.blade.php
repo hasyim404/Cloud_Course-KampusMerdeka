@@ -50,9 +50,9 @@
                                     <td class="text-center">{{ $data->role }}</td>
                                     <td class="text-center">
                                         @empty($data->foto)
-                                            <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="50px"  alt="Profile" class="rounded-circle">
+                                            <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="50px" width="50px"  alt="Profile" class="rounded-circle">
                                         @else
-                                            <img src="{{ url('img/users_profile')}}/{{$data->foto}}" height="50px" alt="Profile" class="rounded-circle">
+                                            <img src="{{ url('img/users_profile')}}/{{$data->foto}}" height="50px" width="50px" alt="Profile" class="rounded-circle">
                                         @endempty
                                     </td>
                                     <td>
