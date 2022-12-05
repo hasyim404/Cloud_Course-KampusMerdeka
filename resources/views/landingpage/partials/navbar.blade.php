@@ -9,8 +9,8 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto {{ Request::is('/') || Request::is('/home') ? "active" : "" }}" href="{{ url('/home') }}">Home</a></li>
-          <li><a class="nav-link scrollto {{ Request::is('course') ? "active" : "" }}" href="{{ url('/course') }}">Course</a></li>
+          <li><a class="nav-link scrollto {{ Request::is('/') || Request::is('home') ? "active" : "" }}" href="{{ url('/home') }}">Home</a></li>
+          <li><a class="nav-link scrollto {{ Request::is('daftar-course') ? "active" : "" }}" href="{{ url('/daftar-course') }}">Course</a></li>
           <li><a class="nav-link scrollto {{ Request::is('about') ? "active" : "" }}" href="{{ url('/about') }}">About</a></li>
 
           @guest
@@ -25,9 +25,9 @@
                 <span class="m-2">{{ Auth::user()->username }}</span> 
 
                 @if(!empty(Auth::user()->foto)) 
-                    <img src="{{ url('img/users_profile')}}/{{Auth::user()->foto}}"height="35px" alt="Profile"  class="rounded-circle">
+                    <img src="{{ url('img/users_profile')}}/{{Auth::user()->foto}}" height="35px" width="35px" alt="Profile"  class="rounded-circle">
                 @else
-                    <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="35px" alt="Profile" class="rounded-circle">
+                    <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="35px" width="35px" alt="Profile" class="rounded-circle">
                 @endif 
                 {{-- <i class="bi bi-chevron-down"></i> --}}
               </a>

@@ -146,8 +146,10 @@ class FeedbackController extends Controller
                 'updated_at'=>now(),
             ]);
        
-        return redirect('/admin/feedback'.'/'.$id)
+        return redirect()->route('feedback.index')
                         ->with('success','Data Feedback Berhasil Diubah');
+        // return redirect('/admin/feedback'.'/'.$id)
+        //                 ->with('success','Data Feedback Berhasil Diubah');
     }
 
     /**

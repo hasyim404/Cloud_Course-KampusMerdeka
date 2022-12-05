@@ -12,9 +12,9 @@
             <div class="col-lg-4">
                 <div class="card sidebar d-flex flex-column align-items-center p-3">
                     @empty(Auth::user()->foto)
-                        <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="120px" alt="Profile" class="rounded-circle">
+                        <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="120px" width="120px" alt="Profile" class="rounded-circle">
                     @else
-                        <img src="{{ url('img/users_profile')}}/{{Auth::user()->foto}}" height="120px" alt="Profile" class="rounded-circle">
+                        <img src="{{ url('img/users_profile')}}/{{Auth::user()->foto}}" height="120px" width="120px" alt="Profile" class="rounded-circle">
                     @endempty
                     <h2 class="pt-3">{{ Auth::user()->f_name }} {{ Auth::user()->l_name }}</h2>
                     <h6>{{ Auth::user()->email }}</h6>
@@ -81,9 +81,9 @@
                                     <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                                     <div class="col-md-8 col-lg-9">
                                         @if(!empty(Auth::user()->foto)) 
-                                            <img src="{{ url('img/users_profile')}}/{{Auth::user()->foto}}"height="120px" alt="Profile"  class="rounded p-2 border">
+                                            <img src="{{ url('img/users_profile')}}/{{Auth::user()->foto}}" height="120px" width="120px" alt="Profile"  class="rounded p-2 border">
                                         @else
-                                            <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="120px" alt="Profile" class="rounded p-2 border">
+                                            <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="120px" width="120px" alt="Profile" class="rounded p-2 border">
                                         @endif 
                                         <div class="pt-2">
                                             <div class="col-md-6">

@@ -67,6 +67,7 @@ class CourseController extends Controller
                 'file_materi' => $request->file_materi,
                 'video' => $request->video,
                 'created_at'=>now(),
+                'updated_at'=>now(),
             ]);
        
         return redirect()->route('course.index')

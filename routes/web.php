@@ -6,6 +6,8 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestimoniController;
+use App\Http\Controllers\LandingpageController;
+use App\Http\Controllers\LPCourseController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,28 +22,13 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
 // Landingpage Routes
-Route::get('/', function () {
-    return view('landingpage.home');
-});
-
-Route::get('/home', function () {
-    return view('landingpage.home');
-});
-
-Route::get('/course', function () {
-    return view('landingpage.course');
-});
-
+Route::resource('/', LandingpageController::class);
+Route::resource('/home', LandingpageController::class);
+Route::resource('/daftar-course', LPCourseController::class);
 Route::get('/about', function () {
     return view('landingpage.about');
 });
-
 Route::put('/my-profile', [ProfileController::class, 'updatePassword'])->name('update-password');
 Route::resource('my-profile', ProfileController::class)->middleware('auth');
 
@@ -61,6 +48,8 @@ Route::prefix('/admin')->middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('get-testimoni-excel', [TestimoniController::class, 'exportExcel']);
 });
 
+// Register & Login Page
 Auth::routes();
+
 
 // Route::get('/home1', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

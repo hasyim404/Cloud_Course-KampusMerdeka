@@ -18,16 +18,20 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $user = User::count();
-        $course = Course::count();
-        $feedback = Feedback::count();
-        $testimoni = Testimoni::all();
-        $ar_status = DB::table('users')
-                    ->selectRaw('status, count(status) as jumlah')
-                    ->groupBy('status')
-                    ->get();
+        $data =
+        [
+            'user' => User::count(),
+            'course' => Course::count(),
+            'feedback' => Feedback::count(),
+            'testimoni' => Testimoni::orderBy('id', 'DESC')->paginate(5),
+            'ar_status' => DB::table('users')
+                            ->selectRaw('status, count(status) as jumlah')
+                            ->groupBy('status')
+                            ->get(), 
+        ];
+        
 
-        return view('admin.dashboard.index', compact('ar_status','user','course','feedback','testimoni'));
+        return view('admin.dashboard.index', $data);
     }
         
 }
