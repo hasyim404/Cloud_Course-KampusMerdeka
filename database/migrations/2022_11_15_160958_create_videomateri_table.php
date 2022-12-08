@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('videomateri', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('video')->nullable();
+            $table->string('nama_video',50);
+            $table->string('video');
             $table->integer('modul_id');
             $table->timestamps();
         });

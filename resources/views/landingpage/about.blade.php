@@ -10,7 +10,7 @@
 
         <header class="section-header pt-5">
             {{-- <h2>Blog</h2> --}}
-            <p>About SiCloud</p>
+            <p class="text-decoration-underline">About SiCloud</p>
         </header>
 
         <div class="row gx-0">

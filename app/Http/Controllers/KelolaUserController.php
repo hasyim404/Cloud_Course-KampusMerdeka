@@ -21,8 +21,10 @@ class KelolaUserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id', 'DESC')->get();
-        return view ('admin.users.index',compact('users'));
+        $users = User::orderBy('updated_at', 'DESC')->get();
+        $ar_status = ['Pelajar','Mahasiswa','Pekerja','Lainnya'];
+        $ar_role = ['Admin','Base'];
+        return view ('admin.users.index',compact('users','ar_status','ar_role'));
     }
 
     /**
@@ -32,9 +34,7 @@ class KelolaUserController extends Controller
      */
     public function create()
     {
-        $ar_status = ['Pelajar','Mahasiswa','Pekerja','Lainnya'];
-        $ar_role = ['Admin','Base'];
-        return view('admin.users.form',compact('ar_status','ar_role'));
+        return redirect()->route('users.index');
     }
 
     /**
@@ -70,7 +70,7 @@ class KelolaUserController extends Controller
             'l_name.max' => 'Nama belakang terlalu panjang, maksimal 45 karakter',
             'no_telp.required' => 'Nomor Telepon wajib di isi',
             'no_telp.without_spaces' => 'Nomor Telepon terdapat spasi',
-            'no_telp.regex' => 'Nomor Telepon tidak sesuai format',
+            'no_telp.regex' => 'Harus sesuai format nomor telepon indonesia',
             'no_telp.unique' => 'Nomor Telepon telah digunakan',
             'no_telp.min' => 'Nomor Telepon terlalu Pendek',
             'no_telp.max' => 'Nomor Telepon terlalu Panjang',
@@ -114,6 +114,7 @@ class KelolaUserController extends Controller
                 'foto' => $fileName,
                 'role' => $request->role,
                 'created_at'=>now(),
+                'updated_at'=>now(),
             ]);
        
         return redirect()->route('users.index')
@@ -129,10 +130,7 @@ class KelolaUserController extends Controller
      */
     public function show($id)
     {
-        $data = User::find($id);
-        $ar_status = ['Pelajar','Mahasiswa','Pekerja','Lainnya'];
-        $ar_role = ['Admin','Base'];
-        return view('admin.users.detail',compact('data','ar_status','ar_role'));
+        return redirect()->route('users.index');
     }
 
     /**
@@ -144,12 +142,10 @@ class KelolaUserController extends Controller
     
     public function edit($id)
     {
-        // $data = User::find($id);
-        // $ar_status = ['Pelajar','Mahasiswa','Pekerja','Lainnya'];
-        // $ar_role = ['Admin','Base'];
-        // return view('admin.users.form_edit',compact('data','ar_status','ar_role'));
-        Alert::error('Access Denied', 'You cannot access the page');
-        return redirect('admin/users');
+        $data = User::find($id);
+        $ar_status = ['Pelajar','Mahasiswa','Pekerja','Lainnya'];
+        $ar_role = ['Admin','Base'];
+        return view('admin.users.detail',compact('data','ar_status','ar_role'));
     }
 
     /**
@@ -185,7 +181,7 @@ class KelolaUserController extends Controller
             'l_name.max' => 'Nama belakang terlalu panjang, maksimal 45 karakter',
             'no_telp.required' => 'Nomor Telepon wajib di isi',
             'no_telp.without_spaces' => 'Nomor Telepon terdapat spasi',
-            'no_telp.regex' => 'Nomor Telepon tidak sesuai format',
+            'no_telp.regex' => 'Harus sesuai format nomor telepon indonesia',
             'no_telp.unique' => 'Nomor Telepon telah digunakan',
             'no_telp.min' => 'Nomor Telepon terlalu Pendek',
             'no_telp.max' => 'Nomor Telepon terlalu Panjang',
@@ -213,7 +209,7 @@ class KelolaUserController extends Controller
 
         if(!empty($request->foto)){
 
-            if(!empty($data->foto)) unlink('img/users_profile/'.$data->foto);
+            if(!empty($data->foto)) unlink(public_path().'/img/users_profile/'.$data->foto);
 
             $fileName = 'pict-'.$request->username.'.'.$request->foto->extension();
             $request->foto->move(public_path('img/users_profile'),$fileName);
@@ -270,7 +266,7 @@ class KelolaUserController extends Controller
     public function destroy($id)
     {
         $data = User::find($id);
-        if(!empty($data->foto)) unlink('img/users_profile/'.$data->foto);
+        if(!empty($data->foto)) unlink(public_path().'/img/users_profile/'.$data->foto);
 
         User::where('id',$id)->delete();
         return redirect()->route('users.index')
@@ -281,4 +277,6 @@ class KelolaUserController extends Controller
     {
         return Excel::download(new UsersExport, 'Data Users.xlsx');
     }
+
+
 }

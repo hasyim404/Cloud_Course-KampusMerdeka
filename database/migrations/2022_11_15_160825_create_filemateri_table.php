@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('filemateri', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('pdfmateri',100)->nullable();
+            $table->string('pdfmateri',100);
             $table->integer('modul_id');
             $table->timestamps();
         });

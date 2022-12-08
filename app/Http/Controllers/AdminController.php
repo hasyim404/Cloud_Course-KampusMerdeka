@@ -20,10 +20,11 @@ class AdminController extends Controller
     {
         $data =
         [
-            'user' => User::count(),
+            'user_active' => count(User::where('isactive', 1)->get()),
+            'user_notActive' => count(User::where('isactive', 0)->get()),
             'course' => Course::count(),
             'feedback' => Feedback::count(),
-            'testimoni' => Testimoni::orderBy('id', 'DESC')->paginate(5),
+            'testimoni' => Testimoni::orderBy('id', 'DESC')->paginate(6),
             'ar_status' => DB::table('users')
                             ->selectRaw('status, count(status) as jumlah')
                             ->groupBy('status')

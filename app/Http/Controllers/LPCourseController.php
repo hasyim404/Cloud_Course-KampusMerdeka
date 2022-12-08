@@ -16,9 +16,9 @@ class LPCourseController extends Controller
      */
     public function index()
     {
-        $course = Course::all();
+        // $course = Course::all();
         $pag_course = Course::orderBy('id', 'DESC')->paginate(5);
-        return view('landingpage.course',compact('course','pag_course'));
+        return view('landingpage.course',compact('pag_course'));
     }
 
     /**

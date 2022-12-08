@@ -54,6 +54,10 @@ return [
     |
     */
 
+    // Untuk web hosting:
+    // 'asset_url' => url('/'),
+
+    // Untuk Local
     'asset_url' => null,
 
     /*
@@ -68,7 +72,7 @@ return [
     |
     */
 
-    // 'app_url' => url('/'),
+    
     'app_url' => null,
 
 

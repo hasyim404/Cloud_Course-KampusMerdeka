@@ -34,11 +34,11 @@
             <ul class="nav nav-tabs nav-tabs-bordered">
 
               <li class="nav-item">
-                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Detail</button>
+                <button class="nav-link active fw-bold" data-bs-toggle="tab" data-bs-target="#profile-overview">Detail</button>
               </li>
 
               <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Data</button>
+                <button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Data</button>
               </li>
 
             </ul>
@@ -71,34 +71,14 @@
 
               </div>
 
-              <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+              <div class="tab-pane fade profile-edit" id="profile-edit">
+
+                <h5 class="card-title">Form Edit Data Testimoni </h5>
+
                 <!-- Profile Edit Form -->
                 <form method="POST" action="{{ route('testimoni.update',$data->id) }}" enctype="multipart/form-data">
                   @csrf
                   @method('PUT')
-
-                  <div class="row mb-3">
-                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">User Image</label>
-                      <div class="col-md-8 col-lg-9">
-                        @if( empty($data->foto) ) 
-                            <img src="{{ url('img/users_profile/!profile-default.jpg') }}" height="120px" width="120px" alt="Profile" class="rounded p-2 border"> 
-                        @elseif (file_exists( public_path('img/users_profile/'.$data->foto) ))
-                            <img src="{{ url('img/users_profile')}}/{{$data->foto}}" height="120px" width="120px" alt="Profile"  class="rounded p-2 border">
-                        @elseif (file_exists( public_path('img/users_profile/testimoni_users_profile/'.$data->foto) ))
-                            <img src="{{ url('img/users_profile/testimoni_users_profile')}}/{{$data->foto}}" height="120px" width="120px" alt="Profile"  class="rounded p-2 border">
-                        @endif 
-                          <div class="pt-2">
-                              <div class="col-md-7">
-                                  <input type="file" class="form-control @error('foto') is-invalid @enderror" id="floatingName" name="foto" placeholder="Foto">
-                                  @error('foto')
-                                  <div class="invalid-feedback">
-                                      {{ $message }}
-                                  </div>  
-                                  @enderror
-                              </div>
-                          </div>
-                      </div>
-                  </div>
 
                   <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
@@ -137,7 +117,7 @@
                 </div>
 
                   <div class="text-center">
-                      <button type="submit" class="btn btn-primary mt-3">Simpan perubahan</button>
+                      <button type="submit" class="btn btn-primary mt-3"><i class="bi bi-save"></i> Simpan perubahan</button>
                   </div>
                 </form><!-- End Profile Edit Form -->
               </div>

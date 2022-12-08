@@ -29,6 +29,12 @@
   <!-- Template Main CSS File -->
   <link href="{{ asset('template/landingpage/assets/css/style.css') }}" rel="stylesheet">
 
+  <!-- MyCSS File -->
+  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+  <!-- Livewire Laravel -->
+  @livewireStyles
+
   <!-- =======================================================
   * Template Name: FlexStart - v1.11.1
   * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
@@ -82,6 +88,9 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('template/landingpage/assets/js/main.js') }}"></script>
+
+  <!-- Livewire Laravel -->
+  @livewireScripts
 
 </body>
 

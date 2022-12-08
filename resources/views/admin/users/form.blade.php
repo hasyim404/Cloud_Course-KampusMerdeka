@@ -164,7 +164,7 @@
         
         <div class="text-center p-3">
           <button type="submit" class="btn btn-primary">Tambah</button>
-          <a class="btn btn-secondary btn-md" href=" {{ url('admin/users') }}">
+          <a class="btn btn-secondary btn-md" href="{{ url('admin/users') }}">
             Back
           </a>  
         </div>

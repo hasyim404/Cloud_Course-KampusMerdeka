@@ -58,7 +58,7 @@
                 <div class="count-box">
                     <i class="bi bi-file-earmark-text" style="color: #ee6c20;"></i>
                     <div>
-                    <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+                    <span data-purecounter-start="0" data-purecounter-end="{{ $count_modul }}" data-purecounter-duration="1" class="purecounter"></span>
                     <p>Modul</p>
                     </div>
                 </div>
@@ -95,11 +95,17 @@
                 @foreach ($course as $data)
                 
                 <div class="col-lg-3">
-                    <a href="{{ route('daftar-course.show',$data->nama_course) }}">
+                    <a href="{{ route('daftar-course.show',$data->id) }}">
                         <div class="post-box">
-                            <div class="post-img"><img src="{{ url('template/landingpage/assets/img/blog/blog-1.jpg') }}" class="img-fluid" alt=""></div>
+                            <div class="post-img">
+                                @empty($data->foto)
+                                    <img class="img-fluidd" src="{{ url('img/banner_course/!banner-default.jpg') }}" width="100%" height="100%" alt="Banner-Course" >
+                                @else
+                                    <img class="img-fluidd" src="{{ url('img/banner_course')}}/{{$data->foto}}" width="100%" height="100%" alt="Banner-Course" >
+                                @endempty  
+                            </div>
                             <span class="post-date">{{ $data->created_at }}</span>
-                            <h6 class="post-title">{{ $data->nama_course }}</h6>
+                            <h3 class="post-title">{{ $data->nama_course }}</h3>
                             {{-- <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a> --}}
                         </div>
                     </a>
@@ -111,7 +117,7 @@
             </div>
 
             <div class="text-center mt-4">
-                <a href="{{ route('daftar-course.index') }}" class="btn btn-primary btn-md rounded-4">Lihat semua course</a>    
+                <a href="{{ route('daftar-course.index') }}" class="btn btn-primary btn-lg rounded-4">Lihat semua course</a>    
             </div>
         </div>
 
@@ -168,7 +174,7 @@
         @else
         <!-- Button trigger modal -->
         <div class="text-center mt-4">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 <i class="bi bi-arrow-right"></i> Bagikan pengalamanmu disini <i class="bi bi-arrow-left"></i>
             </button>
         </div>
