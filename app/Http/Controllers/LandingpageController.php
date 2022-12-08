@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Testimoni;
 use App\Models\Course;
 use App\Models\User;
+use App\Models\Modul;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
-// use App\Models\Modul;
 
 class LandingpageController extends Controller
 {
@@ -22,7 +23,7 @@ class LandingpageController extends Controller
             'course' =>  Course::orderBy('id', 'DESC')->paginate(4),
             'count_course' =>  Course::count(),
             'count_user' =>  User::count(),
-            // 'count_modul' =>  Modul::count(),
+            'count_modul' =>  Modul::count(),
             'testimoni' =>  Testimoni::where('status', 1)->get()
         ];
 
@@ -75,8 +76,8 @@ class LandingpageController extends Controller
                 'created_at'=>now(),
             ]);
        
-        return redirect()->route('home.index')
-                    ->with('success','Testimoni berhasil di kirim');
+        Alert::success('Testimoni berhasil di kirim', 'Testimoni yang kamu kirim akan dipilih lagi oleh admin untuk di tampilkan di halaman depan')->persistent('Close');
+        return redirect()->route('home.index');
     }
 
     /**

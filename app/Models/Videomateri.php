@@ -9,10 +9,10 @@ class Videomateri extends Model
 {
     use HasFactory;
     protected $table = 'videomateri';
-    protected $fillable = ['video','modul_id'];
+    protected $fillable = ['nama_video','video','modul_id'];
 
-    public function videomateri()
+    public function modul()
     {
-        return $this->belongsTo(Videomateri::class);
+        return $this->belongsTo(Modul::class);
     }
 }

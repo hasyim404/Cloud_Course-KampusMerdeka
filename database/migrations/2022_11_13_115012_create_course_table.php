@@ -17,11 +17,11 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('nama_course',100);
             $table->text('deskripsi_course');
-            $table->string('foto',45)->nullable();
-            $table->string('jdl_modul',100);
-            $table->text('deskripsi_modul')->nullable();
-            $table->string('file_materi')->nullable();
-            $table->string('video')->nullable();
+            $table->string('foto',255)->nullable();
+            // $table->string('jdl_modul',100);
+            // $table->text('deskripsi_modul')->nullable();
+            // $table->string('file_materi')->nullable();
+            // $table->string('video')->nullable();
             $table->timestamps();
         });
     }

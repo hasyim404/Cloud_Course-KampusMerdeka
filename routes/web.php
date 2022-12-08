@@ -8,7 +8,14 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestimoniController;
 use App\Http\Controllers\LandingpageController;
 use App\Http\Controllers\LPCourseController;
+use App\Http\Controllers\ModulController;
+use App\Http\Controllers\FilemateriController;
+use App\Http\Controllers\VideomateriController;
+use App\Models\Filemateri;
+use App\Models\KelolaUsers;
+use App\Models\Modul;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -25,7 +32,7 @@ use Illuminate\Support\Facades\Auth;
 // Landingpage Routes
 Route::resource('/', LandingpageController::class);
 Route::resource('/home', LandingpageController::class);
-Route::resource('/daftar-course', LPCourseController::class);
+Route::resource('/daftar-course', LPCourseController::class,)->middleware('auth');
 Route::get('/about', function () {
     return view('landingpage.about');
 });
@@ -41,6 +48,10 @@ Route::prefix('/admin')->middleware(['auth', 'role:Admin'])->group(function () {
     Route::put('/users/{id}/update-password', [KelolaUserController::class, 'updatePasswordAdmin']);
     Route::get('get-users-excel', [KelolaUserController::class, 'exportExcel']);
     Route::resource('/course', CourseController::class);
+    Route::resource('/modul', ModulController::class);
+    Route::resource('/filemateri', FilemateriController::class);
+    Route::get('/filemateri-download/{id}', [FilemateriController::class, 'downloadFiles']);  
+    Route::resource('/videomateri', VideomateriController::class);
     Route::resource('/feedback', FeedbackController::class);
     Route::get('get-feedback-pdf', [FeedbackController::class, 'generatePDF']);  
     Route::resource('/testimoni', TestimoniController::class);
@@ -50,6 +61,3 @@ Route::prefix('/admin')->middleware(['auth', 'role:Admin'])->group(function () {
 
 // Register & Login Page
 Auth::routes();
-
-
-// Route::get('/home1', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -102,7 +102,7 @@ class ProfileController extends Controller
 
         if(!empty($request->foto)){
 
-            if(!empty($data->foto)) unlink('img/users_profile/'.$data->foto);
+            if(!empty($data->foto)) unlink(public_path().'/img/users_profile/'.$data->foto);
 
             $fileName = 'pict-'.$request->username.'.'.$request->foto->extension();
             $request->foto->move(public_path('img/users_profile'),$fileName);

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Api\VideomateriController;
+use App\Http\Controllers\Api\ModulController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,3 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('videomateri', VideomateriController::class);
+Route::apiResource('modul', ModulController::class);
+
+
+// Route::get('/videomateri', [VideomateriController::class, 'index']);
+// Route::get('/videomateri/{id}', [VideomateriController::class, 'show']);
+// Route::post('/videomateri-create', [VideomateriController::class, 'store']);

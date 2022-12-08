@@ -18,7 +18,7 @@ class TestimoniController extends Controller
      */
     public function index()
     {
-        $testimoni = Testimoni::orderBy('id', 'DESC')->get();
+        $testimoni = Testimoni::orderBy('updated_at', 'DESC')->get();
         return view ('admin.testimoni.index',compact('testimoni'));
     }
 
@@ -29,7 +29,7 @@ class TestimoniController extends Controller
      */
     public function create()
     {
-        return view('admin.testimoni.form');
+        return redirect()->route('testimoni.index');
     }
 
     /**
@@ -79,6 +79,7 @@ class TestimoniController extends Controller
                 'isi_pesan' => $request->isi_pesan,
                 'foto' => $fileName,
                 'created_at'=>now(),
+                'updated_at'=>now(),
             ]);
        
         return redirect()->route('testimoni.index')
@@ -92,6 +93,17 @@ class TestimoniController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
+    {
+        return redirect()->route('testimoni.index');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
         $data = Testimoni::find($id);
         switch ($data->status) {
@@ -112,17 +124,6 @@ class TestimoniController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -135,7 +136,6 @@ class TestimoniController extends Controller
             'nama' => 'required|min:2|max:100',
             'email' => 'required|email|max:45',
             'isi_pesan' => 'required|min:5',
-            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
         ],
         // Custom Error Code
         [
@@ -147,36 +147,14 @@ class TestimoniController extends Controller
             'email.max' => 'Email terlalu panjang, maksimal 45 karakter',
             'isi_pesan.required' => 'Pesan wajib di isi',
             'isi_pesan.min' => 'Pesan terlalu pendek, minimal 5 karakter',
-            'foto.image' => 'Harus sebuah image dengan format jpg,jpeg,png',
-            'foto.mimes' => 'Hanya memperbolehkan format jpg,jpeg,png',
-            'foto.max' => 'Size terlalu besar, maksimal size 4MB',
         ]);
 
-        $foto = DB::table('testimoni')->select('foto')->where('id',$id)->get();
-        foreach($foto as $f){
-            $namaFileFotoLama = $f->foto;
-        }
-
-        $data = Testimoni::find($id);
-
-        if(!empty($request->foto)){
-
-            if(!empty($data->foto)) unlink('img/users_profile/testimoni_users_profile/'.$data->foto);
-
-            $fileName = 'pict-'.$request->nama.'.'.$request->foto->extension();
-            $request->foto->move(public_path('img/users_profile/testimoni_users_profile'),$fileName);
-        }
-
-        else{
-            $fileName = $namaFileFotoLama;
-        }
         //lakukan insert data dari request form
         DB::table('testimoni')->where('id',$id)->update(
             [
                 'nama' => $request->nama,
                 'email' => $request->email,
                 'isi_pesan' => $request->isi_pesan,
-                'foto' => $fileName,
                 'updated_at'=>now(),
             ]);
        
@@ -193,7 +171,7 @@ class TestimoniController extends Controller
     public function destroy($id)
     {
         $data = Testimoni::find($id);
-        if(!empty($data->foto)) unlink('img/users_profile/testimoni_users_profile/'.$data->foto);
+        // if(!empty($data->foto)) unlink('img/users_profile/testimoni_users_profile/'.$data->foto);
 
         Testimoni::where('id',$id)->delete();
         return redirect()->route('testimoni.index')

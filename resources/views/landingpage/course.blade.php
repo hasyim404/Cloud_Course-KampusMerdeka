@@ -55,80 +55,51 @@
                     </article><!-- End blog entry --> --}}
 
                     <div class="sidebar">
-                        <h1 class="fw-bold" style="color: #012970">Course Tersedia</h1>
-                        <div class="sidebar-item recent-posts pt-5">
+                        <div class="sidebar-item recent-posts">
 
-                            @foreach ( $course as $data )
+                            @livewire('search-pagination')
                             
-                                <div class="post-item clearfix ">
-                                    <a href="{{ route('daftar-course.show',$data->id) }}">
-                                        <div class="row">
-                                            <div class="col col-lg-4">
-                                                @empty($data->foto)
-                                                    <img class="me-5 rounded" src="{{ url('img/banner_course/!banner-default.jpg') }}" style="width: 200px !important" alt="Banner-Course" >
-                                                @else
-                                                    <img class="me-5 rounded" src="{{ url('img/banner_course')}}/{{$data->foto}}" style="width: 200px !important" alt="Banner-Course" >
-                                                @endempty  
-                                            </div>   
-                                            <div class="col col-lg-8">
-                                                <h3 class="text-dark fw-semibold">{{ $data->nama_course }}</h3>
-                                                <time class="m-auto"><i class="bi bi-clock-history"></i> {{ $data->updated_at->format('Y M d') }}</time>
-                                                <span class="text-secondary">{{ $data->deskripsi_course }}</span>    
-                                            </div>
-                                        </div>
-                                        
-                                    </a>
-                                </div> <br>  <hr> <br>     
-                            
-                            
-                            @endforeach
-
                         </div><!-- End sidebar recent posts-->
                     </div>
                     
 
-                    <div class="blog-pagination">
+                    {{-- <div class="blog-pagination">
                         <ul class="justify-content-center">
                             <li><a href="#">1</a></li>
                             <li class="active"><a href="#">2</a></li>
                             <li><a href="#">3</a></li>
                         </ul>
-                    </div>
+                    </div> --}}
 
                 </div><!-- End blog entries list -->
 
                 <div class="col-lg-4">
 
-                    <div class="sidebar">
+                    <div id="searchbar" class="sticky-top">
+                        <div class="sidebar">
 
-                        <h3 class="sidebar-title">Search</h3>
-                        <div class="sidebar-item search-form">
-                            <form action="">
-                            <input type="text">
-                            <button type="button"><i class="bi bi-search"></i></button>
-                            </form>
-                        </div><!-- End sidebar search formn-->
+                            <h4 class="fw-bold pb-3">Recent Course</h4>
+                            <div class="sidebar-item recent-posts">
 
-                        <h3 class="sidebar-title">Recent Course</h3>
-                        <div class="sidebar-item recent-posts">
+                                @foreach ( $pag_course as $data )
+                                    <div class="post-item clearfix">
+                                        <a href="{{ route('daftar-course.show',$data->nama_course) }}">
+                                            @empty($data->foto)
+                                                <img src="{{ url('img/banner_course/!banner-default.jpg') }}" alt="Banner-Course" >
+                                            @else
+                                                <img src="{{ url('img/banner_course')}}/{{$data->foto}}" alt="Banner-Course" >
+                                            @endempty 
+                                            <h4>{{ $data->nama_course }}</h4>
+                                            <time datetime="{{ $data->updated_at->format('Y M d') }}"><i class="bi bi-clock-history"></i> {{ $data->updated_at->format('Y M d') }}</time>
+                                        </a>
+                                    </div>    
+                                @endforeach
 
-                            @foreach ( $pag_course as $data )
-                                <div class="post-item clearfix">
-                                    <a href="{{ route('daftar-course.show',$data->nama_course) }}">
-                                        @empty($data->foto)
-                                            <img src="{{ url('img/banner_course/!banner-default.jpg') }}" alt="Banner-Course" >
-                                        @else
-                                            <img src="{{ url('img/banner_course')}}/{{$data->foto}}" alt="Banner-Course" >
-                                        @endempty 
-                                        <h4>{{ $data->nama_course }}</h4>
-                                        <time datetime="{{ $data->updated_at->format('Y M d') }}"><i class="bi bi-clock-history"></i> {{ $data->updated_at->format('Y M d') }}</time>
-                                    </a>
-                                </div>    
-                            @endforeach
+                            </div><!-- End sidebar recent posts-->
 
-                        </div><!-- End sidebar recent posts-->
-
-                    </div><!-- End sidebar -->
+                        </div><!-- End sidebar -->
+                    </div>
+                    
 
                 </div><!-- End blog sidebar -->
 

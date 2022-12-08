@@ -8,10 +8,7 @@
 
         <div class="col-xxl-12">
             <div class="card info-card sales-card">
-                <div class="d-flex flex-row p-3">
-                    <li class="dropdown-header"><a href="{{ route('feedback.create') }}" class="btn btn-primary btn-sm">
-                        <i class="bi bi-plus"></i> Tambah Data</a>
-                    </li>    
+                <div class="d-flex flex-row p-3">  
                     <li class="dropdown-header text-center px-2"><a href="{{ url('admin/get-feedback-pdf') }}" class="btn btn-danger btn-sm">
                         <i class="bi bi-filetype-pdf"></i> Export PDF</a>
                     </li>     
@@ -24,9 +21,10 @@
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Nama&nbsp;User</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">Isi&nbsp;Feedback</th>
                                     <th scope="col">Course</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,21 +34,27 @@
                                 <tr>
                                     <th scope="row">{{ $no++ }}.</th>
                                     <td>{{ $data->nama }}</td>
+                                    <td>{{ $data->email }}</td>
                                     <td>{{ $data->isi_feedback }}</td>
-                                    <td>{{ $data->course->nama_course }}</td>
+                                    @empty($data->course->nama_course)
+                                    <td>
+                                        <span class="badge bg-danger">Course Terhapus/hilang</span>
+                                    </td>
+                                    @else
+                                    <td>
+                                        {{ $data->course->nama_course }}
+                                    </td>
+                                    @endempty
                                     <td>
                                         <form method="POST" id="formDelete">
                                             @csrf
                                             @method('DELETE')
-                                            {{-- <a href="{{ route('feedback.show',$data->id) }}" class="btn btn-primary btn-sm">
-                                                <i class="bi bi-eye"></i>
-                                            </a> --}}
-                                            <a href="{{ route('feedback.edit',$data->id) }}" class="btn btn-warning btn-sm">
-                                                <i class="bi bi-pencil-square"></i>
-                                            </a>
-                                            <button data-action="{{ route('feedback.destroy',$data->id) }}" type="submit" class="btn btn-danger btn-sm btnDelete" title="Hapus Feedback">
-                                                    <i class="bi bi-trash"></i>
-                                            </button>
+
+                                            <div class="d-flex justify-content-center">
+                                                <button data-action="{{ route('feedback.destroy',$data->id) }}" type="submit" class="btn btn-danger btn-sm btnDelete" title="Hapus Feedback">
+                                                        <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
                                         </form>
                                     </td>
                                     {{-- <td><span class="badge bg-success">Approved</span></td> --}}
@@ -64,6 +68,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 @endsection

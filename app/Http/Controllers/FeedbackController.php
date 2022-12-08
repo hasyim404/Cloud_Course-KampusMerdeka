@@ -17,7 +17,7 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        $feedback = Feedback::orderBy('id', 'DESC')->get();
+        $feedback = Feedback::orderBy('updated_at', 'DESC')->get();
         return view ('admin.feedback.index',compact('feedback'));
     }
 
@@ -28,8 +28,7 @@ class FeedbackController extends Controller
      */
     public function create()
     {
-        $course = Course::all()->sortBy('nama_course');
-        return view('admin.feedback.form',compact('course'));
+        return redirect()->route('feedback.index');
     }
 
     /**
@@ -72,6 +71,7 @@ class FeedbackController extends Controller
                 'course_id' => $request->course_id,
                 'isi_feedback' => $request->isi_feedback,
                 'created_at'=>now(),
+                'updated_at'=>now(),
             ]);
        
         return redirect()->route('feedback.index')
@@ -86,8 +86,7 @@ class FeedbackController extends Controller
      */
     public function show($id)
     {
-        $data = Feedback::find($id);
-        return view('admin.feedback.detail',compact('data'));
+        return redirect()->route('feedback.index');
     }
 
     /**
@@ -98,9 +97,7 @@ class FeedbackController extends Controller
      */
     public function edit($id)
     {
-        $data = Feedback::find($id);
-        $course = Course::all()->sortBy('nama_course');
-        return view('admin.feedback.form_edit',compact('data','course'));
+        return redirect()->route('feedback.index');
     }
 
     /**

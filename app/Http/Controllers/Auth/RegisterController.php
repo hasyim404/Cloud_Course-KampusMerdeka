@@ -80,7 +80,7 @@ class RegisterController extends Controller
             'l_name.max' => 'Nama belakang terlalu panjang, maksimal 45 karakter',
             'no_telp.required' => 'Nomor Telepon wajib di isi',
             'no_telp.without_spaces' => 'Nomor Telepon terdapat spasi',
-            'no_telp.regex' => 'Nomor Telepon tidak sesuai format',
+            'no_telp.regex' => 'Harus sesuai format nomor telepon indonesia',
             'no_telp.unique' => 'Nomor Telepon telah digunakan',
             'no_telp.min' => 'Nomor Telepon terlalu Pendek',
             'no_telp.max' => 'Nomor Telepon terlalu Panjang',

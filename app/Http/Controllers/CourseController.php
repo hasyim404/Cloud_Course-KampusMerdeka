@@ -15,8 +15,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        // $course = Course::all();
-        $course = Course::orderBy('id', 'DESC')->get();
+        $course = Course::orderBy('updated_at', 'DESC')->get();
         return view ('admin.course.index',compact('course'));
     }
 
@@ -27,7 +26,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('admin.course.form');
+        return redirect()->route('course.index');
     }
 
     /**
@@ -39,13 +38,24 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_course' => 'required|min:5|max:100',
+            'nama_course' => 'required|unique:course|min:5|max:100',
             'deskripsi_course' => 'required',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
-            'jdl_modul' => 'required|min:5|max:100',
-            'deskripsi_modul' => 'nullable|min:5',
-            'file_materi' => 'nullable|mimes:pdf',
-            'video' => 'nullable|max:255',
+            // 'jdl_modul' => 'required|min:5|max:100',
+            // 'deskripsi_modul' => 'nullable|min:5',
+            // 'file_materi' => 'nullable|mimes:pdf',
+            // 'video' => 'nullable|max:255',
+        ],
+        // Custom Error 
+        [
+            'nama_course.required' => 'Nama Course Wajib di isi',
+            'nama_course.min' => 'Nama Course Terlalu pendek, minimal 5 karakter',
+            'nama_course.max' => 'Nama Course Terlalu panjang, maksimal 100 karakter',
+            'nama_course.unique' => 'Course sudah ada / Terduplikasi',
+            'deskripsi_course.required' => 'Deskripsi Course wajib di isi',
+            'foto.image' => 'Harus sebuah image dengan format jpg,jpeg,png',
+            'foto.mimes' => 'Hanya memperbolehkan format jpg,jpeg,png',
+            'foto.max' => 'Size terlalu besar, maksimal size 4MB',
         ]);
 
         if(!empty($request->foto)){
@@ -62,10 +72,10 @@ class CourseController extends Controller
                 'nama_course' => $request->nama_course,
                 'deskripsi_course' => $request->deskripsi_course,
                 'foto' => $fileName,
-                'jdl_modul' => $request->jdl_modul,
-                'deskripsi_modul' => $request->deskripsi_modul,
-                'file_materi' => $request->file_materi,
-                'video' => $request->video,
+                // 'jdl_modul' => $request->jdl_modul,
+                // 'deskripsi_modul' => $request->deskripsi_modul,
+                // 'file_materi' => $request->file_materi,
+                // 'video' => $request->video,
                 'created_at'=>now(),
                 'updated_at'=>now(),
             ]);
@@ -82,8 +92,7 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        $data = Course::find($id);
-        return view('admin.course.detail',compact('data'));
+        return redirect()->route('course.index');
     }
 
     /**
@@ -95,7 +104,7 @@ class CourseController extends Controller
     public function edit($id)
     {
         $data = Course::find($id);
-        return view('admin.course.form_edit',compact('data'));
+        return view('admin.course.detail',compact('data'));
     }
 
     /**
@@ -111,10 +120,20 @@ class CourseController extends Controller
             'nama_course' => 'required|min:5|max:100',
             'deskripsi_course' => 'required',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
-            'jdl_modul' => 'required|min:5|max:100',
-            'deskripsi_modul' => 'nullable|min:5',
-            'file_materi' => 'nullable|mimes:pdf',
-            'video' => 'nullable|max:255',
+            // 'jdl_modul' => 'required|min:5|max:100',
+            // 'deskripsi_modul' => 'nullable|min:5',
+            // 'file_materi' => 'nullable|mimes:pdf',
+            // 'video' => 'nullable|max:255',
+        ],
+        // Custom Error 
+        [
+            'nama_course.required' => 'Nama Course Wajib di isi',
+            'nama_course.min' => 'Nama Course Terlalu pendek, minimal 5 karakter',
+            'nama_course.max' => 'Nama Course Terlalu panjang, maksimal 100 karakter',
+            'deskripsi_course.required' => 'Deskripsi Course wajib di isi',
+            'foto.image' => 'Harus sebuah image dengan format jpg,jpeg,png',
+            'foto.mimes' => 'Hanya memperbolehkan format jpg,jpeg,png',
+            'foto.max' => 'Size terlalu besar, maksimal size 4MB',
         ]);
 
         $foto = DB::table('course')->select('foto')->where('id',$id)->get();
@@ -126,7 +145,7 @@ class CourseController extends Controller
 
         if(!empty($request->foto)){
 
-            if(!empty($data->foto)) unlink('img/banner_course/'.$data->foto);
+            if(!empty($data->foto)) unlink(public_path().'/img/banner_course/'.$data->foto);
 
             $fileName = 'banner-'.$request->nama_course.'.'.$request->foto->extension();
             $request->foto->move(public_path('img/banner_course'),$fileName);
@@ -142,10 +161,10 @@ class CourseController extends Controller
                 'nama_course' => $request->nama_course,
                 'deskripsi_course' => $request->deskripsi_course,
                 'foto' => $fileName,
-                'jdl_modul' => $request->jdl_modul,
-                'deskripsi_modul' => $request->deskripsi_modul,
-                'file_materi' => $request->file_materi,
-                'video' => $request->video,
+                // 'jdl_modul' => $request->jdl_modul,
+                // 'deskripsi_modul' => $request->deskripsi_modul,
+                // 'file_materi' => $request->file_materi,
+                // 'video' => $request->video,
                 'updated_at'=>now(),
             ]);
        
@@ -162,10 +181,11 @@ class CourseController extends Controller
     public function destroy($id)
     {
         $data = Course::find($id);
-        if(!empty($data->foto)) unlink('img/banner_course/'.$data->foto);
+        if(!empty($data->foto)) unlink(public_path().'/img/banner_course/'.$data->foto);
 
         Course::where('id',$id)->delete();
         return redirect()->route('course.index')
                          ->with('success','Data Course Berhasil Dihapus');
     }
+
 }

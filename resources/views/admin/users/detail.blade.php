@@ -24,12 +24,12 @@
             @endempty
             <h2>{{ $data->f_name }} {{ $data->l_name }}</h2>
             <h3>{{ $data->email }}</h3>
-            <div class="social-links mt-2">
+            {{-- <div class="social-links mt-2">
               <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
               <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
               <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-            </div>
+            </div> --}}
           </div>
         </div>
 
@@ -43,15 +43,15 @@
             <ul class="nav nav-tabs nav-tabs-bordered">
 
               <li class="nav-item">
-                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Detail</button>
+                <button class="nav-link active fw-bold" data-bs-toggle="tab" data-bs-target="#profile-overview">Detail</button>
               </li>
 
               <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Data</button>
+                <button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Data</button>
               </li>
 
               <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
+                  <button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
               </li>
             </ul>
 
@@ -59,7 +59,7 @@
 
               <div class="tab-pane fade show active profile-overview" id="profile-overview">
         
-                <h5 class="card-title">Profile Details</h5>
+                <h5 class="card-title">Detail Profil User</h5>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label ">Full Name</div>
@@ -93,7 +93,10 @@
 
               </div>
 
-              <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+              <div class="tab-pane fade profile-edit" id="profile-edit">
+
+                <h5 class="card-title">Form Edit Data User</h5>
+
                 <!-- Profile Edit Form -->
                 <form method="POST" action="{{ route('users.update',$data->id) }}" enctype="multipart/form-data">
                   @csrf
@@ -183,7 +186,7 @@
                   <div class="row mb-3">
                     <label for="validationDefault04" class="col-md-4 col-lg-3 col-form-label">Status</label>
                     <div class="col-md-8 col-lg-9">
-                      <select class="form-select @error('status') is-invalid @enderror" id="validationDefault04" name="status">
+                      <select class="@error('status') is-invalid @enderror selectpicker border rounded" data-live-search="true" id="validationDefault04" name="status">
                         <option selected disabled value="">-- Pilih Status --</option>
                         @php
                         $no = 1;  
@@ -191,7 +194,7 @@
             
                         @foreach ($ar_status as $status)
                             @php $cek1 = ($status == $data->status) ? 'selected' : ''; @endphp
-                            <option value="{{ $status }}" {{ $cek1 }}> {{ $no++ }} - {{ $status }}</option> 
+                            <option value="{{ $status }}" {{ $cek1 }}> {{ $no++ }}. {{ $status }}</option> 
             
                         @endforeach
                       </select>
@@ -206,12 +209,12 @@
                   <div class="row mb-3">
                     <label for="validationDefault04" class="col-md-4 col-lg-3 col-form-label">Role</label>
                     <div class="col-md-8 col-lg-9">
-                      <select class="form-select @error('role') is-invalid @enderror" id="validationDefault04" name="role">
+                      <select class="@error('role') is-invalid @enderror selectpicker border rounded" data-live-search="true" id="validationDefault04" name="role">
                         <option selected disabled value="">-- Pilih Role --</option>
             
                         @foreach ($ar_role as $role)
                           @php $cek2 = ($role == $data->role) ? 'selected' : ''; @endphp
-                          <option value="{{ $role }}" {{ $cek2 }}> {{ $role }}</option> 
+                          <option value="{{ $role }}" {{ $cek2 }}>- {{ $role }}</option> 
                         @endforeach
                         
                       </select>
@@ -224,12 +227,15 @@
                   </div>
 
                   <div class="text-center">
-                      <button type="submit" class="btn btn-primary mt-3">Simpan perubahan</button>
+                      <button type="submit" class="btn btn-primary mt-3"><i class="bi bi-save"></i> Simpan perubahan</button>
                   </div>
                 </form><!-- End Profile Edit Form -->
               </div>
 
-              <div class="tab-pane fade pt-3 p2" id="profile-change-password">
+              <div class="tab-pane fade" id="profile-change-password">
+
+                <h5 class="card-title">Form Ubah Password</h5>
+
                 <!-- Change Password Form -->
                 <form method="POST" action="{{ url('/admin/users/'.$data->id.'/update-password') }}">
                   @csrf
@@ -255,7 +261,7 @@
                   </div>
 
                   <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Change Password</button>
+                      <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Change Password</button>
                   </div>
                 </form><!-- End Change Password Form -->
               </div>
@@ -263,7 +269,7 @@
             </div><!-- End Bordered Tabs -->
 
             <div class="text-end">
-              <a class="btn btn-primary btn-md" href=" {{ url()->previous() }}">
+              <a class="btn btn-primary btn-md" href="{{ url('admin/users') }}">
                 <i class="bi bi-caret-left-square"></i> Back
               </a>  
             </div>

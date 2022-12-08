@@ -26,20 +26,22 @@
                 <div class="card sidebar p-3">
                     <ul class="nav nav-tabs nav-tabs-bordered">
                         <li class="nav-item">
-                          <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Detail</button>
+                          <button class="nav-link active fw-bold" data-bs-toggle="tab" data-bs-target="#profile-overview">Detail</button>
                         </li>
 
                         <li class="nav-item">
-                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+                            <button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
                           </li>
         
                         <li class="nav-item">
-                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
+                            <button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
                         </li>
                     </ul>
 
                     <div class="tab-content pt-2">
                         <div class="tab-pane fade show active profile-overview p-2" id="profile-overview">
+
+                            <h5 class="card-title fw-bold text-decoration-underline pb-3">My profile</h5>
                   
                           {{-- <h5 class="card-title mt-3">Details:</h5> --}}
           
@@ -71,6 +73,8 @@
                         </div>
 
                         <div class="tab-pane fade profile-edit pt-3 p-2" id="profile-edit">
+
+                            <h5 class="card-title fw-bold text-decoration-underline pb-3">Edit data</h5>
 
                             <!-- Profile Edit Form -->
                             <form method="POST" action="{{ route('my-profile.update',Auth::user()->id) }}" enctype="multipart/form-data">
@@ -137,7 +141,7 @@
                                 <div class="row mb-3">
                                     <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input name="email" type="text" class="form-control @error('email') is-invalid @enderror" id="Email" value="{{ Auth::user()->email }}">
+                                        <input name="text" type="text" class="form-control @error('email') is-invalid @enderror" id="Email" value="{{ Auth::user()->email }}">
                                         @error('email')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -159,13 +163,16 @@
                                 </div>
             
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary mt-3">Simpan perubahan</button>
+                                    <button type="submit" class="btn btn-primary mt-3"><i class="bi bi-save"></i> Simpan perubahan</button>
                                 </div>
                             </form><!-- End Profile Edit Form -->
             
                         </div>
             
                         <div class="tab-pane fade pt-3 p2" id="profile-change-password">
+
+                            <h5 class="card-title fw-bold text-decoration-underline pb-3">Ubah Password</h5>
+
                             <!-- Change Password Form -->
                             <form method="POST" action="{{ route('update-password',Auth::user()->id) }}">
                                 @csrf
@@ -191,7 +198,7 @@
                                 </div>
             
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Change Password</button>
+                                    <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Change Password</button>
                                 </div>
                             </form><!-- End Change Password Form -->
             
@@ -209,3 +216,30 @@
 
           </div>
         </div>
+@endsection
+
+@section('sweetalert2')
+<script>
+    @if ($errors->get('password'))
+    {
+    Swal.fire({
+        title: 'Error',
+        text: 'Ubah password gagal',
+        icon: 'error',
+        showConfirmButton: false
+    })
+    };
+    @endif
+
+    @if ($errors->get('f_name','l_name','no_telp','email','username','status','role','foto'))
+    {
+    Swal.fire({
+        title: 'Error',
+        text: 'Update data diri gagal',
+        icon: 'error',
+        showConfirmButton: false
+    })
+    };
+    @endif
+</script>
+@endsection
