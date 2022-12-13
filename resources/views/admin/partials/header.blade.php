@@ -34,7 +34,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="{{ route('users.show', Auth::user()->id ) }}">
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('users.edit', Auth::user()->id ) }}">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
