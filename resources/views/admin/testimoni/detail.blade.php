@@ -1,8 +1,15 @@
 @extends('admin.index')
-@section('title', 'Detail Testimoni')
-@section('info', 'Detail Testimoni')
-@section('data1', 'Kelola Testimoni')
-@section('data2', 'Detail Testimoni')
+@section('title', 'Edit Testimoni')
+@section('page_title')
+    <h1>Edit Data Testimoni</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('/admin') }}"><i class="bi bi-house"></i></a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/admin/testimoni') }}">Kelola Testimoni</a></li>
+            <li class="breadcrumb-item active"><a href="#!">Edit Data Testimoni</a></li>
+        </ol>
+    </nav>
+@endsection
 @section('content')
 <section class="section profile">
     <div class="row">

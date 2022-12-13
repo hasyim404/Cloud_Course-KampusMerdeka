@@ -27,7 +27,24 @@ class ModulController extends Controller
                         ->where('modul.id', '=', $id)
                         ->get();
 
-        return new ModulResource(true, 'Detail data Modul', $modul);
+        if ($modul) {
+            return response()->json(
+                [
+                    'success' => true,
+                    'message' => 'Detail Modul',
+                    'data' => $modul,
+                ],
+                200
+            );
+        } else {
+            return response()->json(
+                [
+                    'success' => false,
+                    'message' => 'Detail Modul Tidak ditemukan',
+                ],
+                404
+            );
+        }
     }
 
     public function store(Request $request)

@@ -28,7 +28,7 @@ class FeedbackController extends Controller
      */
     public function create()
     {
-        return redirect()->route('feedback.index');
+        return redirect()->back();
     }
 
     /**
@@ -43,10 +43,6 @@ class FeedbackController extends Controller
             'nama' => 'required|min:2|max:50',
             'email' => 'required|email|max:60',
             'course_id' => 'required|integer',
-           /**  
-            * kalo gamau ada validasi pake nullable aja
-            * 'isi_feedback' => 'nullable', 
-            */
             'isi_feedback' => 'required|min:5',
         ],
         // Custom Error Code
@@ -86,7 +82,7 @@ class FeedbackController extends Controller
      */
     public function show($id)
     {
-        return redirect()->route('feedback.index');
+        return redirect()->back();
     }
 
     /**
@@ -97,7 +93,7 @@ class FeedbackController extends Controller
      */
     public function edit($id)
     {
-        return redirect()->route('feedback.index');
+        return redirect()->back();
     }
 
     /**

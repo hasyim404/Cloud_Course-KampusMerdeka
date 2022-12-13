@@ -1,7 +1,14 @@
 @extends('admin.index')
 @section('title', 'Kelola Filemateri')
-@section('info', 'Kelola Filemateri')
-@section('data1', 'Kelola Filemateri')
+@section('page_title')
+    <h1>Kelola File Materi</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('/admin') }}"><i class="bi bi-house"></i></a></li>
+            <li class="breadcrumb-item active"><a href="{{ url('/admin/filemateri') }}">Kelola File Materi</a></li>
+        </ol>
+    </nav>
+@endsection
 @section('content')
 <div class="col-lg-12">
     <div class="row">

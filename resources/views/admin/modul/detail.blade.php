@@ -1,8 +1,15 @@
 @extends('admin.index')
-@section('title', 'Detail Modul')
-@section('info', 'Detail Modul')
-@section('data1', 'Kelola Modul')
-@section('data2', 'Detail Modul')
+@section('title', 'Edit Modul')
+@section('page_title')
+    <h1>Edit Data Modul</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('/admin') }}"><i class="bi bi-house"></i></a></li>
+            <li class="breadcrumb-item "><a href="{{ url('/admin/modul') }}">Kelola Modul</a></li>
+            <li class="breadcrumb-item active"><a href="#!">Edit Data Modul</a></li>
+        </ol>
+    </nav>
+@endsection
 @section('content')
 <section class="section profile">
     <div class="row">
@@ -18,7 +25,15 @@
             @endempty 
 
             <h2 class="pt-1">Banner Course</h2>
-            <p class="text-center">{{ $data->course->foto }}</p>
+            <p class="text-center">
+              @empty($data->course->foto)
+                <span class="badge bg-danger">-</span>
+              @else
+              <td>
+                  {{ $data->course->foto }}
+              </td>
+              @endempty
+            </p>
           </div>
         </div>
 
@@ -54,7 +69,13 @@
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Untuk Course</div>
-                  <div class="col-lg-9 col-md-8">{{ $data->course->nama_course }}</div>
+                  <div class="col-lg-9 col-md-8">
+                    @empty($data->course->nama_course)
+                      <span class="badge bg-danger">Course Terhapus/hilang</span>
+                    @else
+                      {{ $data->course->nama_course }}
+                    @endempty
+                  </div>
                 </div>
 
                 <div class="row">

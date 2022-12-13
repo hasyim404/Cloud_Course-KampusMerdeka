@@ -26,7 +26,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return redirect()->route('course.index');
+        return redirect()->back();
     }
 
     /**
@@ -92,7 +92,7 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        return redirect()->route('course.index');
+        return redirect()->back();
     }
 
     /**

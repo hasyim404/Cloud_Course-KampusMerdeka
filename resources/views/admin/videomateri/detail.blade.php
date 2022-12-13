@@ -1,8 +1,15 @@
 @extends('admin.index')
-@section('title', 'Detail Link Video')
-@section('info', 'Detail Link Video')
-@section('data1', 'Kelola Link Video')
-@section('data2', 'Detail Link Video')
+@section('title', 'Edit Link Video')
+@section('page_title')
+    <h1>Edit Data Link Video</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('/admin') }}"><i class="bi bi-house"></i></a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/admin/videomateri') }}">Kelola User</a></li>
+            <li class="breadcrumb-item active"><a href="$!">Edit Data Link Video</a></li>
+        </ol>
+    </nav>
+@endsection
 @section('content')
 <section class="section profile">
     <div class="row">
