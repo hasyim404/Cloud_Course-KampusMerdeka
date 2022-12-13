@@ -1,7 +1,14 @@
 @extends('admin.index')
 @section('title', 'Kelola Link Video')
-@section('info', 'Kelola Link Video')
-@section('data1', 'Kelola Link Video')
+@section('page_title')
+    <h1>Kelola Link Video</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('/admin') }}"><i class="bi bi-house"></i></a></li>
+            <li class="breadcrumb-item active"><a href="{{ url('/admin/videomateri') }}">Kelola Link Video</a></li>
+        </ol>
+    </nav>
+@endsection
 @section('content')
 @php
     use Illuminate\Support\Str;

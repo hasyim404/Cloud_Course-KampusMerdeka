@@ -28,7 +28,7 @@ class VideomateriController extends Controller
      */
     public function create()
     {
-        return redirect()->route('videomateri.index');
+        return redirect()->back();
     }
 
     /**
@@ -79,7 +79,7 @@ class VideomateriController extends Controller
      */
     public function show($id)
     {
-        return redirect()->route('videomateri.index');
+        return redirect()->back();
     }
 
     public function edit($id)

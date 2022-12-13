@@ -11,11 +11,7 @@ use App\Http\Controllers\LPCourseController;
 use App\Http\Controllers\ModulController;
 use App\Http\Controllers\FilemateriController;
 use App\Http\Controllers\VideomateriController;
-use App\Models\Filemateri;
-use App\Models\KelolaUsers;
-use App\Models\Modul;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -32,18 +28,25 @@ use Illuminate\Support\Facades\Auth;
 // Landingpage Routes
 Route::resource('/', LandingpageController::class);
 Route::resource('/home', LandingpageController::class);
-Route::resource('/daftar-course', LPCourseController::class,)->middleware('auth');
+Route::get('/daftar-course', [LPCourseController::class, 'index'])->name('daftar-course.index');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/daftar-course/{id}', [LPCourseController::class, 'show'])->name('daftar-course.show');
+    Route::get('/daftar-course/filemateri-download/{id}', [LPCourseController::class, 'downloadFiles'])->name('daftar-course.downloadFiles');
+    Route::get('/daftar-course/create', [LPCourseController::class, 'create']);
+    Route::post('/daftar-course', [LPCourseController::class, 'store'])->name('daftar-course.store');
+    Route::get('/daftar-course/{id}/edit', [LPCourseController::class, 'edit']);
+    Route::put('/my-profile', [ProfileController::class, 'updatePassword'])->name('update-password');
+    Route::resource('my-profile', ProfileController::class);
+});
 Route::get('/about', function () {
     return view('landingpage.about');
 });
-Route::put('/my-profile', [ProfileController::class, 'updatePassword'])->name('update-password');
-Route::resource('my-profile', ProfileController::class)->middleware('auth');
 
 
 // Admin Routes
 Route::prefix('/admin')->middleware(['auth', 'role:Admin'])->group(function () {
-    Route::resource('/', AdminController::class);
-    Route::resource('/dashboard', AdminController::class);
+    Route::get('/', [AdminController::class, 'index']);
+    Route::get('/dashboard', [AdminController::class, 'index']);
     Route::resource('/users', KelolaUserController::class);
     Route::put('/users/{id}/update-password', [KelolaUserController::class, 'updatePasswordAdmin']);
     Route::get('get-users-excel', [KelolaUserController::class, 'exportExcel']);

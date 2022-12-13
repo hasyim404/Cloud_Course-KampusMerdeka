@@ -75,16 +75,20 @@
     
             <div class="card bg-glass">
               <div class="card-body px-4 py-5 px-md-5">
-                <div class="d-flex justify-content-center">
-                  <a href="{{ url('/home') }}" class="d-flex align-items-center mb-5">
-                    <div class="flex-shrink-0">
-                      <img src="{{ url('img/main-logo.png') }}" width="120px" alt="">  
-                    </div>
-                    <div class="flex-grow-1 display-5 fw-bold ls-tight">
-                      SiCloud 
-                    </div>
-                  </a>
+
+                <div class="">
+                  <div class="d-flex justify-content-center flex-shrink-0">
+                    <img src="{{ url('img/main-logo.png') }}" width="120px" alt="">  
+                  </div>
+                  <div class="d-flex justify-content-center flex-grow-1 display-5 fw-bold ls-tight" style="color: #6878FF">
+                    LOGIN
+                  </div>
+                  <div class="d-flex justify-content-center mb-3">
+                    <p class="text-muted fs-6">Untuk mulai mengakses course</p>
+                  </div>
                 </div>
+
+                
                 
                 
 

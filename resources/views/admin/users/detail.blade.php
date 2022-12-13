@@ -1,8 +1,15 @@
 @extends('admin.index')
-@section('title', 'Detail User')
-@section('info', 'Detail User')
-@section('data1', 'Kelola User')
-@section('data2', 'Detail User')
+@section('title', 'Edit User')
+@section('page_title')
+    <h1>Edit User</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('/admin') }}"><i class="bi bi-house"></i></a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/admin/users') }}">Kelola User</a></li>
+            <li class="breadcrumb-item active"><a href="#!">Edit User</a></li>
+        </ol>
+    </nav>
+@endsection
 @section('content')
 <section class="section profile">
     <div class="row">

@@ -36,6 +36,22 @@ class LandingpageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function create()
+    {
+        return redirect()->back();
+    }
+
+    public function edit($id)
+    {
+        return redirect()->back();
+    }
+
+    public function show($id)
+    {
+        return redirect()->back();
+    }
+    
     public function store(Request $request)
     {
         $request->validate([
@@ -80,16 +96,4 @@ class LandingpageController extends Controller
         return redirect()->route('home.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function show($id)
-    // {
-    //     $course = Course::find($id);
-
-    //     return view('landingpage.course.view',compact('course'));
-    // }
 }

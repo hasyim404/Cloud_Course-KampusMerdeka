@@ -1,8 +1,15 @@
 @extends('admin.index')
-@section('title', 'Detail Course')
-@section('info', 'Detail Course')
-@section('data1', 'Kelola Course')
-@section('data2', 'Detail Course')
+@section('title', 'Edit Judul Course')
+@section('page_title')
+    <h1>Edit Judul Course</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('/admin') }}"><i class="bi bi-house"></i></a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/admin/course') }}">Kelola User</a></li>
+            <li class="breadcrumb-item active"><a href="#!">Edit Judul Course</a></li>
+        </ol>
+    </nav>
+@endsection
 @section('content')
 <section class="section profile">
     <div class="row">
@@ -18,7 +25,13 @@
             @endempty 
 
             <h2 class="pt-1">Banner Course</h2>
-            <p class="text-center">{{ $data->foto }}</p>
+            <p class="text-center">
+              @empty($data->foto)
+                <span class="badge bg-danger">Tidak ada gambar</span>
+              @else
+                {{ $data->foto }}
+              @endempty
+            </p>
           </div>
         </div>
 

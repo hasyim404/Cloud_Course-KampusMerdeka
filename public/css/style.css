@@ -13,3 +13,11 @@
     position: sticky;
     top: 5rem;
 }
+
+.file_materi {
+    color: #333333;
+}
+
+.file_materi::before {
+    color: #007BFF;
+}

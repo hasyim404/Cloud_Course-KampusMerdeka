@@ -21,7 +21,7 @@ class KelolaUserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('updated_at', 'DESC')->get();
+        $users = User::orderBy('id', 'DESC')->get();
         $ar_status = ['Pelajar','Mahasiswa','Pekerja','Lainnya'];
         $ar_role = ['Admin','Base'];
         return view ('admin.users.index',compact('users','ar_status','ar_role'));
@@ -34,7 +34,7 @@ class KelolaUserController extends Controller
      */
     public function create()
     {
-        return redirect()->route('users.index');
+        return redirect()->back();
     }
 
     /**
@@ -130,7 +130,7 @@ class KelolaUserController extends Controller
      */
     public function show($id)
     {
-        return redirect()->route('users.index');
+        return redirect()->back();
     }
 
     /**

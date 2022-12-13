@@ -28,7 +28,7 @@ class ModulController extends Controller
      */
     public function create()
     {
-        return redirect()->route('modul.index');
+        return redirect()->back();
     }
 
     /**
@@ -79,7 +79,7 @@ class ModulController extends Controller
      */
     public function show($id)
     {
-        return redirect()->route('modul.index');
+        return redirect()->back();
         
     }
 

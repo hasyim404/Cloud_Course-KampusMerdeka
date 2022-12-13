@@ -1,6 +1,6 @@
 @extends('landingpage.index')
 @section('title')
-    Course
+    Daftar Course
 @endsection
 @section('content')
     <!-- ======= Breadcrumbs ======= -->
@@ -22,37 +22,20 @@
 
             <div class="row">
 
+                <div class="col-lg-12">
+                    <div class="sidebar">
+                        <div class="container">
+                            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                  <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
+                                  <li class="breadcrumb-item active" aria-current="page">Daftar Course</li>
+                                </ol>
+                              </nav>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-lg-8 entries">
-
-                    {{-- <article class="entry">
-
-                        <div class="entry-img">
-                            <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
-                        </div>
-
-                        <h2 class="entry-title">
-                            <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
-                        </h2>
-
-                        <div class="entry-meta">
-                            <ul>
-                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                            <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="entry-content">
-                            <p>
-                            Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                            Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde soluta. Est cum et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda perferendis dolore.
-                            </p>
-                            <div class="read-more">
-                            <a href="blog-single.html">Read More</a>
-                            </div>
-                        </div>
-
-                    </article><!-- End blog entry --> --}}
 
                     <div class="sidebar">
                         <div class="sidebar-item recent-posts">
@@ -61,15 +44,6 @@
                             
                         </div><!-- End sidebar recent posts-->
                     </div>
-                    
-
-                    {{-- <div class="blog-pagination">
-                        <ul class="justify-content-center">
-                            <li><a href="#">1</a></li>
-                            <li class="active"><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                        </ul>
-                    </div> --}}
 
                 </div><!-- End blog entries list -->
 
@@ -83,7 +57,7 @@
 
                                 @foreach ( $pag_course as $data )
                                     <div class="post-item clearfix">
-                                        <a href="{{ route('daftar-course.show',$data->nama_course) }}">
+                                        <a href="{{ route('daftar-course.show',$data->id) }}">
                                             @empty($data->foto)
                                                 <img src="{{ url('img/banner_course/!banner-default.jpg') }}" alt="Banner-Course" >
                                             @else

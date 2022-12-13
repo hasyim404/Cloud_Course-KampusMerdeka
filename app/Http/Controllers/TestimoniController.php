@@ -29,7 +29,7 @@ class TestimoniController extends Controller
      */
     public function create()
     {
-        return redirect()->route('testimoni.index');
+        return redirect()->back();
     }
 
     /**
@@ -94,7 +94,7 @@ class TestimoniController extends Controller
      */
     public function show($id)
     {
-        return redirect()->route('testimoni.index');
+        return redirect()->back();
     }
 
     /**

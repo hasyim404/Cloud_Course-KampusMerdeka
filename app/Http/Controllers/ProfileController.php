@@ -30,8 +30,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        Alert::error('Access Denied', 'You cannot access the page');
-        return redirect('my-profile');
+        return redirect()->back();
     }
 
     /**

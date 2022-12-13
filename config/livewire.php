@@ -72,10 +72,8 @@ return [
     |
     */
 
-    
     'app_url' => null,
-
-
+    
     /*
     |--------------------------------------------------------------------------
     | Livewire Endpoint Middleware Group

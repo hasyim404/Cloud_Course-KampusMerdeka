@@ -29,7 +29,7 @@ class FilemateriController extends Controller
      */
     public function create()
     {
-        return redirect()->route('filemateri.index');
+        return redirect()->back();
     }
 
     /**
@@ -79,12 +79,12 @@ class FilemateriController extends Controller
 
     public function show($id)
     {
-        return redirect()->route('filemateri.index');
+        return redirect()->back();
     }
 
     public function edit($id)
     {
-        return redirect()->route('filemateri.index');
+        return redirect()->back();
     }
 
     /**

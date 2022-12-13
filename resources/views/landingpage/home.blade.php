@@ -8,8 +8,8 @@
         <div class="container">
             <div class="row">
             <div class="col-lg-6 d-flex flex-column justify-content-center">
-                <h1 data-aos="fade-up">Menghadirkan Free Course Online Tentang Berbagai Macam Materi Cloud.</h1>
-                <h2 data-aos="fade-up" data-aos-delay="400">Learn Better, Do Better, Be Better.</h2>
+                <h1 data-aos="fade-up">Belajar Cloud Semakin Mudah Dengan SiCloud</h1>
+                <h2 data-aos="fade-up" data-aos-delay="400">Menghadirkan Course Online Gratis Tentang Berbagai Macam Materi Cloud</h2>
                 <div data-aos="fade-up" data-aos-delay="600">
                 <div class="text-center text-lg-start">
                     @guest
@@ -194,7 +194,7 @@
                     
                             <div class="col-md-12">
                               <div class="row g-3 mb-3">
-                                <div class="col-md-6">
+                                <div class="col-md">
                                   <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingName" value="{{ Auth::user()->f_name }} {{ Auth::user()->l_name }}" @disabled(true) placeholder="Nama Lengkap">
                                     <label for="floatingName">Nama Lengkap</label>
@@ -266,7 +266,6 @@
     //                             '- {{$error}}<br>',
     //                         @endforeach
     //                     ],
-    
 
     @if ($errors->all())
     {
@@ -275,7 +274,7 @@
         html: 
             [
                 @foreach ($errors->all() as $error)
-                    '- {{$error}}<br>',
+                    '- {{$error}}.<br>',
                 @endforeach
             ],
         icon: 'error',
