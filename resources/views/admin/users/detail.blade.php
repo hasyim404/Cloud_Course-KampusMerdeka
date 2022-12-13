@@ -251,7 +251,7 @@
                   <div class="row mb-3">
                       <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
                       <div class="col-md-8 col-lg-9">
-                          <input name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="newPassword">
+                          <input name="password" type="password" class="form-control @error('password') is-invalid @enderror pww" id="newPassword">
                           @error('password')
                           <div class="invalid-feedback">
                               {{ $message }}
@@ -263,9 +263,23 @@
                   <div class="row mb-3">
                       <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
                       <div class="col-md-8 col-lg-9">
-                          <input name="password_confirmation" type="password" class="form-control @error('password') is-invalid @enderror" id="password-confirm">
+                          <input name="password_confirmation" type="password" class="form-control @error('password') is-invalid @enderror pww" id="password-confirm">
                       </div>
                   </div>
+
+                  <!-- Checkbox Show/Hide Password -->
+                  <div class="row mb-4">
+                    <div class="form-check d-flex justify-content-start">
+                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label"></label>
+                      <div class="col-md-8 col-lg-9 ms-4">
+                        <input class="form-check-input me-2" type="checkbox" id="checkbox" />
+                        <label class="form-check-label" for="remember" onselectstart='return false;'>
+                          {{ __('Show Password') }}
+                      </label>
+                      </div>
+                    </div>
+                  </div>
+                  
 
                   <div class="text-center">
                       <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Change Password</button>
@@ -311,5 +325,12 @@
     })
   };
   @endif
+
+  // Show/Hide Password
+  $(document).ready(function(){
+      $('#checkbox').on('change', function(){
+          $('.pww').attr('type',$('#checkbox').prop('checked')==true?"text":"password"); 
+      });
+  });
 </script>
 @endsection

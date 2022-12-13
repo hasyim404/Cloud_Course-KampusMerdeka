@@ -24,6 +24,8 @@
 
     <link href="{{ asset('template/landingpage/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('template/landingpage/assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('template/admin/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+
     <style>
         html, body {
             width: 100%;
@@ -120,6 +122,32 @@
 
   <script src="{{ asset('template/landingpage/assets/js/main.js') }}"></script>
   <script src="{{ asset('template/landingpage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  {{-- <script>
+    $(document).ready(function() {
+        $("#show_hide_password button").on('click', function(event) {
+            event.preventDefault();
+            if ($('#show_hide_password input').attr("type") == "text") {
+                $('#show_hide_password input').attr('type', 'password');
+                $('#show_hide_password i').addClass("bi-eye");
+                $('#show_hide_password i').removeClass("bi-slash");
+            } else if ($('#show_hide_password input').attr("type") == "password") {
+                $('#show_hide_password input').attr('type', 'text');
+                $('#show_hide_password i').removeClass("bi-eye");
+                $('#show_hide_password i').addClass("bi-eye-slash");
+            }
+        });
+    });
+  </script> --}}
+
+  <script>
+    $(document).ready(function(){
+        $('#checkbox').on('change', function(){
+            $('.pww').attr('type',$('#checkbox').prop('checked')==true?"text":"password"); 
+        });
+    });
+  </script>
 
 </body>
 </html>

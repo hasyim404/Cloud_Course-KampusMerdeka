@@ -107,22 +107,21 @@
                   </div>
     
                   <!-- Password input -->
-                  <div class="form-floating mb-4">
-                    <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password"/>
-                    <label class="form-label" for="form3Example4">{{ __('Password') }}</label>
-                    @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                  </div>
-
+                    <div class="form-floating mb-4">
+                      <input placeholder="Password" type="password" class="form-control @error('password') is-invalid @enderror pww" name="password" required autocomplete="current-password"/>
+                      <label class="form-label" for="form3Example4">{{ __('Password') }}</label>
+                      @error('password')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
+                    </div>
     
-                  <!-- Checkbox -->
+                  <!-- Checkbox Show/Hide Password -->
                   <div class="form-check d-flex justify-content-start">
-                    <input class="form-check-input me-2" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} />
-                    <label class="form-check-label" for="remember">
-                        {{ __('Remember Me') }}
+                    <input class="form-check-input me-2" type="checkbox" id="checkbox" />
+                    <label class="form-check-label" for="remember" onselectstart='return false;'>
+                        {{ __('Show Password') }}
                     </label>
                   </div>
     

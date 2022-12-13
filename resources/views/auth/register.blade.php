@@ -178,7 +178,7 @@
                   <div class="row">
                     <div class="col-md-6 mb-4">
                       <div class="form-floating">
-                        <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" placeholder="Password" />
+                        <input type="password" class="form-control @error('password') is-invalid @enderror pww" name="password" value="{{ old('password') }}" placeholder="Password" />
                         <label class="form-label" for="password">Password</label>
                         @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -189,17 +189,17 @@
                     </div>
                     <div class="col-md-6 mb-4">
                       <div class="form-floating">
-                        <input type="password" id="password-confirm" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" placeholder="Confirm Password" />
+                        <input type="password" class="form-control @error('password') is-invalid @enderror pww" name="password_confirmation" placeholder="Confirm Password" />
                         <label class="form-label" for="password-confirm">Confirm Password</label>
                       </div>
                     </div>
                   </div>
     
-                  <!-- Checkbox -->
+                  <!-- Checkbox Show/Hide Password -->
                   <div class="form-check d-flex justify-content-start">
-                    <input class="form-check-input me-2" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} />
-                    <label class="form-check-label" for="remember">
-                        {{ __('Remember Me') }}
+                    <input class="form-check-input me-2" type="checkbox" id="checkbox"/>
+                    <label class="form-check-label" for="remember" onselectstart='return false;'>
+                        {{ __('Show Password') }}
                     </label>
                   </div>
     
