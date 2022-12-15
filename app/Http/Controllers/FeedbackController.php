@@ -17,7 +17,7 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        $feedback = Feedback::orderBy('updated_at', 'DESC')->get();
+        $feedback = Feedback::orderBy('id', 'DESC')->get();
         return view ('admin.feedback.index',compact('feedback'));
     }
 
@@ -39,39 +39,40 @@ class FeedbackController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nama' => 'required|min:2|max:50',
-            'email' => 'required|email|max:60',
-            'course_id' => 'required|integer',
-            'isi_feedback' => 'required|min:5',
-        ],
-        // Custom Error Code
-        [
-            'nama.required' => 'Nama wajib di isi',
-            'nama.min' => 'Nama terlalu pendek',
-            'nama.max' => 'Nama terlalu panjang, maksimal 50 karakter',
-            'email.required' => 'Email wajib di isi',
-            'email.email' => 'Harus berupa format email',
-            'email.max' => 'Email terlalu panjang, maksimal 60 karakter',
-            'course_id.required' => 'Course Wajib Di isi',
-            'course_id.integer' => 'Format pemilihan salah',
-            'isi_feedback.required' => 'Feedback wajib di isi',
-            'isi_feedback.min' => 'Pesan terlalu pendek, minimal 5 karakter',
-        ]);
+        return redirect()->back();
+        // $request->validate([
+        //     'nama' => 'required|min:2|max:50',
+        //     'email' => 'required|email|max:60',
+        //     'course_id' => 'required|integer',
+        //     'isi_feedback' => 'required|min:5',
+        // ],
+        // // Custom Error Code
+        // [
+        //     'nama.required' => 'Nama wajib di isi',
+        //     'nama.min' => 'Nama terlalu pendek',
+        //     'nama.max' => 'Nama terlalu panjang, maksimal 50 karakter',
+        //     'email.required' => 'Email wajib di isi',
+        //     'email.email' => 'Harus berupa format email',
+        //     'email.max' => 'Email terlalu panjang, maksimal 60 karakter',
+        //     'course_id.required' => 'Course Wajib Di isi',
+        //     'course_id.integer' => 'Format pemilihan salah',
+        //     'isi_feedback.required' => 'Feedback wajib di isi',
+        //     'isi_feedback.min' => 'Pesan terlalu pendek, minimal 5 karakter',
+        // ]);
 
-        //lakukan insert data dari request form
-        DB::table('feedback')->insert(
-            [
-                'nama' => $request->nama,
-                'email' => $request->email,
-                'course_id' => $request->course_id,
-                'isi_feedback' => $request->isi_feedback,
-                'created_at'=>now(),
-                'updated_at'=>now(),
-            ]);
+        // //lakukan insert data dari request form
+        // DB::table('feedback')->insert(
+        //     [
+        //         'nama' => $request->nama,
+        //         'email' => $request->email,
+        //         'course_id' => $request->course_id,
+        //         'isi_feedback' => $request->isi_feedback,
+        //         'created_at'=>now(),
+        //         'updated_at'=>now(),
+        //     ]);
        
-        return redirect()->route('feedback.index')
-                         ->with('success','Feedback Baru Berhasil Di tambahkan');
+        // return redirect()->route('feedback.index')
+        //                  ->with('success','Feedback Baru Berhasil Di tambahkan');
     }
 
     /**
@@ -105,44 +106,43 @@ class FeedbackController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nama' => 'required|min:2|max:50',
-            'email' => 'required|email|max:60',
-            'course_id' => 'required|integer',
-           /**  
-            * kalo gamau ada validasi pake nullable aja
-            * 'isi_feedback' => 'nullable', 
-            */
-            'isi_feedback' => 'required|min:5',
-        ],
-        // Custom Error Code
-        [
-            'nama.required' => 'Nama wajib di isi',
-            'nama.min' => 'Nama terlalu pendek',
-            'nama.max' => 'Nama terlalu panjang, maksimal 50 karakter',
-            'email.required' => 'Email wajib di isi',
-            'email.email' => 'Harus berupa format email',
-            'email.max' => 'Email terlalu panjang, maksimal 60 karakter',
-            'course_id.required' => 'Course Wajib Di isi',
-            'course_id.integer' => 'Format pemilihan salah',
-            'isi_feedback.required' => 'Feedback wajib di isi',
-            'isi_feedback.min' => 'Pesan terlalu pendek, minimal 5 karakter',
-        ]);
+        return redirect()->back();
+        // $request->validate([
+        //     'nama' => 'required|min:2|max:50',
+        //     'email' => 'required|email|max:60',
+        //     'course_id' => 'required|integer',
+        //    /**  
+        //     * kalo gamau ada validasi pake nullable aja
+        //     * 'isi_feedback' => 'nullable', 
+        //     */
+        //     'isi_feedback' => 'required|min:5',
+        // ],
+        // // Custom Error Code
+        // [
+        //     'nama.required' => 'Nama wajib di isi',
+        //     'nama.min' => 'Nama terlalu pendek',
+        //     'nama.max' => 'Nama terlalu panjang, maksimal 50 karakter',
+        //     'email.required' => 'Email wajib di isi',
+        //     'email.email' => 'Harus berupa format email',
+        //     'email.max' => 'Email terlalu panjang, maksimal 60 karakter',
+        //     'course_id.required' => 'Course Wajib Di isi',
+        //     'course_id.integer' => 'Format pemilihan salah',
+        //     'isi_feedback.required' => 'Feedback wajib di isi',
+        //     'isi_feedback.min' => 'Pesan terlalu pendek, minimal 5 karakter',
+        // ]);
 
-        //lakukan update data dari request form edit
-        DB::table('feedback')->where('id',$id)->update(
-            [
-                'nama' => $request->nama,
-                'email' => $request->email,
-                'course_id' => $request->course_id,
-                'isi_feedback' => $request->isi_feedback,
-                'updated_at'=>now(),
-            ]);
+        // //lakukan update data dari request form edit
+        // DB::table('feedback')->where('id',$id)->update(
+        //     [
+        //         'nama' => $request->nama,
+        //         'email' => $request->email,
+        //         'course_id' => $request->course_id,
+        //         'isi_feedback' => $request->isi_feedback,
+        //         'updated_at'=>now(),
+        //     ]);
        
-        return redirect()->route('feedback.index')
-                        ->with('success','Data Feedback Berhasil Diubah');
-        // return redirect('/admin/feedback'.'/'.$id)
-        //                 ->with('success','Data Feedback Berhasil Diubah');
+        // return redirect()->route('feedback.index')
+        //                 ->with('success','Data Feedback Berhasil Diubah');            ->with('success','Data Feedback Berhasil Diubah');
     }
 
     /**

@@ -14,39 +14,19 @@ class VideomateriController extends Controller
 {
     public function index()
     {
-        $videomateri = Videomateri::join('modul', 'modul.id', '=', 'videomateri.modul_id')
-                        ->select('videomateri.id','videomateri.nama_video','videomateri.video','modul.jdl_modul AS modul','videomateri.updated_at AS last_update')
-                        ->get();
-        
-        // $user = User::where('role', '=', 'Admin')->first();
+        $videomateri = Videomateri::leftJoin('modul', 'modul.id', '=', 'videomateri.modul_id')
+                                    ->select('videomateri.id','videomateri.nama_video','videomateri.video','modul.jdl_modul AS modul','videomateri.updated_at AS last_update')
+                                    ->get();
 
-        // return new VideomateriResource(true, 'Data Link Video', $videomateri);
-        if ($videomateri) {
-            return response()->json(
-                [
-                    'success' => true,
-                    'message' => 'Data Link Video',
-                    'data' => $videomateri,
-                ],
-                200
-            );
-        } else {
-            return response()->json(
-                [
-                    'success' => false,
-                    'message' => 'Forbidden',
-                ],
-                404
-            );
-        }
+        return new VideomateriResource(true, 'Data Link Video', $videomateri);
     }
 
     public function show($id)
     {
-        $videomateri = Videomateri::join('modul', 'modul.id', '=', 'videomateri.modul_id')
-                        ->select('videomateri.id','videomateri.nama_video','videomateri.video','modul.jdl_modul AS modul','videomateri.updated_at AS last_update')
-                        ->where('videomateri.id', '=', $id)
-                        ->first();
+        $videomateri = Videomateri::leftJoin('modul', 'modul.id', '=', 'videomateri.modul_id')
+                                    ->select('videomateri.id','videomateri.nama_video','videomateri.video','modul.jdl_modul AS modul','videomateri.updated_at AS last_update')
+                                    ->where('videomateri.id', '=', $id)
+                                    ->first();
 
         if ($videomateri) {
             return response()->json(
@@ -129,23 +109,70 @@ class VideomateriController extends Controller
             return response()->json($validator->errors(),422);
         }
 
-        $videomateri = Videomateri::whereId($id)->update([
-            'nama_video' => $request->nama_video,
-            'video' => $request->video,
-            'modul_id' => $request->modul_id,
-            'updated_at'=>now(),
-        ]);
+        // cek ada id nya ada tidak
+        $videomateri_cek = Videomateri::whereId($id)->first();
 
-        return new VideomateriResource(true, 'Data Link Video berhasil di ubah', $videomateri);
+        if (!empty($videomateri_cek)) {
+
+            $videomateri = Videomateri::whereId($id)->update([
+                'nama_video' => $request->nama_video,
+                'video' => $request->video,
+                'modul_id' => $request->modul_id,
+                'updated_at'=>now(),
+            ]);
+
+            $select = Videomateri::leftJoin('modul', 'modul.id', '=', 'videomateri.modul_id')
+                                    ->select('videomateri.id','videomateri.nama_video','videomateri.video','modul.jdl_modul AS modul','videomateri.updated_at AS last_update')
+                                    ->where('videomateri.id', '=', $id)
+                                    ->first();
+
+            return response()->json(
+                [
+                    'success' => true,
+                    'message' => 'Data Link Video berhasil di ubah',
+                    'data' => $select,
+                ],
+                200
+            );
+        } else {
+            return response()->json(
+                [
+                    'success' => false,
+                    'message' => 'Detail Link Video untuk di update Tidak ditemukan',
+                ],
+                404
+            );
+        }
+        
     }
 
     public function destroy($id)
     {
 
         $videomateri = Videomateri::whereId($id)->first();
-        $videomateri->delete();
 
-        return new VideomateriResource(true, 'Data Link Video berhasil di hapus', $videomateri);
+        if ($videomateri) {
+
+            $videomateri->delete();
+            return response()->json(
+                [
+                    'success' => true,
+                    'message' => 'Data Link Video berhasil di hapus',
+                    'data' => $videomateri,
+                ],
+                200
+            );
+        } else {
+            return response()->json(
+                [
+                    'success' => false,
+                    'message' => 'Data Link Video yang ingin di hapus tidak di temukan',
+                ],
+                404
+            );
+        }
+
+        // return new VideomateriResource(true, 'Data Link Video berhasil di hapus', $videomateri);
     }
 
     

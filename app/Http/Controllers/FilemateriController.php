@@ -79,7 +79,8 @@ class FilemateriController extends Controller
 
     public function show($id)
     {
-        return redirect()->back();
+        $data = Filemateri::find($id);
+        return view ('admin.filemateri.show',compact('data'));
     }
 
     public function edit($id)

@@ -62,6 +62,10 @@
                                                 @method('DELETE')
 
                                                 <div class="d-flex justify-content-center">
+                                                    <a href="{{ route('filemateri.show',$data->id) }}" class="btn btn-primary btn-sm" title="Preview">
+                                                        <i class="bi bi-eye"></i>
+                                                    </a>
+                                                    &nbsp;
                                                     <button data-action="{{ route('filemateri.destroy',$data->id) }}" type="submit" class="btn btn-danger btn-sm btnDelete" title="Hapus">
                                                             <i class="bi bi-trash"></i>
                                                     </button>
