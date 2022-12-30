@@ -141,7 +141,7 @@
                                 <div class="row mb-3">
                                     <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input name="text" type="text" class="form-control @error('email') is-invalid @enderror" id="Email" value="{{ Auth::user()->email }}">
+                                        <input name="email" type="text" class="form-control @error('email') is-invalid @enderror" id="Email" value="{{ Auth::user()->email }}">
                                         @error('email')
                                         <div class="invalid-feedback">
                                             {{ $message }}

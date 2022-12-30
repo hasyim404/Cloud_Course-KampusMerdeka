@@ -212,7 +212,8 @@
     $(document).ready(function(){
         $(document).on('click', '.btnSee', function(){
             Swal.fire({
-                imageUrl: 'https://peserta32.sib3.nurulfikri.com/low-assets/how-to-get-link-video.png',
+                // imageUrl: 'https://peserta32.sib3.nurulfikri.com/low-assets/how-to-get-link-video.png',
+                imageUrl: '{{ url('img/how-to-get-link-video.jpeg') }}',
                 imageWidth: 600,
                 imageHeight: 400,
                 imageAlt: 'How to..',

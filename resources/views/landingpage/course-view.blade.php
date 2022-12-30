@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <!-- ======= Breadcrumbs ======= -->
-    <section class="">
+    {{-- <section class=""> --}}
         {{-- <div class="container">
 
             <ol>
@@ -15,7 +15,8 @@
             <h2>Blog Single</h2>
 
         </div> --}}
-    </section><!-- End Breadcrumbs -->
+    {{-- </section> --}}
+    <!-- End Breadcrumbs -->
 
     <!-- ======= Blog Section ======= -->
     <section id="blog" class="blog">
@@ -23,8 +24,8 @@
 
             <div class="row">
 
-                <div class="col-lg-12">
-                    <div class="sidebar">
+                <div class="col-lg-12 mt-5">
+                    <div class="sidebar mt-5">
                         <div class="container">
                             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                                 <ol class="breadcrumb">

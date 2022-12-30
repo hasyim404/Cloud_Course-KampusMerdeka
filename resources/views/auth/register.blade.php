@@ -157,11 +157,13 @@
                       </div>
                     @endforeach
                     @error('status')
+                        <br>
                         <span class="invalid-feedback d-inline" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                   </div>
+                  
     
                   <!-- Email input -->
                   <div class="form-floating mb-4">

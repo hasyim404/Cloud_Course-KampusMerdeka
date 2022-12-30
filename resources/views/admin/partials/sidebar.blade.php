@@ -105,6 +105,16 @@
               <span>Landingpage</span>
           </a>
       </li>
+
+      <hr class="px-5">
+      <li class="nav-heading">Dokumentasi</li>
+
+      <li class="nav-item">
+          <a class="nav-link collapsed" target="_blank" href="https://documenter.getpostman.com/view/18406189/2s8YzZQeoU">
+            <i class="bi bi-file-earmark-code"></i>
+              <span>API Dokumentasi</span>
+          </a>
+      </li>
       
       <!-- End Search Bar -->
       <!-- End Testimoni Nav -->

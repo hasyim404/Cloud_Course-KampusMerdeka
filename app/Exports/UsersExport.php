@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\KelolaUsers;
+use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
@@ -13,11 +13,12 @@ class UsersExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return KelolaUsers::select("f_name", "l_name", "no_telp", "username", "email", "status", "role")->get();
+        
+        return User::select("f_name", "l_name", "no_telp", "username", "email", "status", "isactive", "role")->get();
     }
 
     public function headings(): array
     {
-        return ["Nama Depan", "Nama Belakang", "No.Telp", "Username", "Email", "Status", "Role"];
+        return ["Nama Depan", "Nama Belakang", "No.Telp", "Username", "Email", "Status", "IsActive", "Role"];
     }
 }

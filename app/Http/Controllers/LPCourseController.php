@@ -54,6 +54,7 @@ class LPCourseController extends Controller
                                 ->leftJoin('videomateri', 'videomateri.modul_id', '=', 'modul.id')
                                 ->where('course.id', '=', $id)
                                 ->orderBy('id_modul', 'ASC')
+                                // ->orderBy('id_modul', 'ASC')
                                 ->get(),
             // 'videomateri' =>  Videomateri::where('modul_id', '=', 'modul.id')->get(),
 

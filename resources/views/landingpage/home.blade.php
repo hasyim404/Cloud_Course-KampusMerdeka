@@ -18,7 +18,7 @@
                         <i class="bi bi-arrow-right"></i>
                     </a>    
                     @else
-                    <a href="{{ url('course') }}" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                    <a href="{{ url('daftar-course') }}" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                         <span>Lihat Course</span>
                         <i class="bi bi-arrow-right"></i>
                     </a>    

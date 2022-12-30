@@ -18,7 +18,7 @@ class TestimoniController extends Controller
      */
     public function index()
     {
-        $testimoni = Testimoni::orderBy('updated_at', 'DESC')->get();
+        $testimoni = Testimoni::orderBy('id', 'DESC')->get();
         return view ('admin.testimoni.index',compact('testimoni'));
     }
 

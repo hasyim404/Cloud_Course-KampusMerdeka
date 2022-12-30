@@ -39,7 +39,7 @@ class FeedbackController extends Controller
             return response()->json(
                 [
                     'success' => false,
-                    'message' => 'Detail Link Video Tidak ditemukan',
+                    'message' => 'Detail Feedback Tidak ditemukan',
                 ],
                 404
             );

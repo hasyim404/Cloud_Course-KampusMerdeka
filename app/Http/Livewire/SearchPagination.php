@@ -14,8 +14,9 @@ class SearchPagination extends Component
 
     public function render()
     {
-        $course = Course::where('nama_course', 'like', '%'.$this->searchTerm.'%')->paginate(5);
+        $course = Course::where('nama_course', 'like', '%'.$this->searchTerm.'%')->paginate(10);
+        $search = $this->searchTerm;
 
-        return view('livewire.search-pagination', ['course' => $course]);
+        return view('livewire.search-pagination', ['course' => $course, 'search' => $search]);
     }
 }

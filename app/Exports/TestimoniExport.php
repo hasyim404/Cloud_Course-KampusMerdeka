@@ -13,11 +13,11 @@ class TestimoniExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Testimoni::select("nama", "email", "isi_pesan")->get();
+        return Testimoni::select("nama", "email", "status", "isi_pesan")->get();
     }
 
     public function headings(): array
     {
-        return ["Nama User", "Email", "Isi Pesan"];
+        return ["Nama User", "Email", "Status", "Isi Pesan"];
     }
 }

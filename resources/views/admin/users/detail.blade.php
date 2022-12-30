@@ -94,6 +94,11 @@
                 </div>
 
                 <div class="row">
+                  <div class="col-lg-3 col-md-4 label">IsActive</div>
+                  <div class="col-lg-9 col-md-8"><span class="badge {{ $class }}">{{ $isactive }}</span></div>
+                </div>
+
+                <div class="row">
                   <div class="col-lg-3 col-md-4 label">Role</div>
                   <div class="col-lg-9 col-md-8">{{ $data->role }}</div>
                 </div>

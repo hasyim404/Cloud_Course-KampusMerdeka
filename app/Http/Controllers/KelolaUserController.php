@@ -145,7 +145,20 @@ class KelolaUserController extends Controller
         $data = User::find($id);
         $ar_status = ['Pelajar','Mahasiswa','Pekerja','Lainnya'];
         $ar_role = ['Admin','Base'];
-        return view('admin.users.detail',compact('data','ar_status','ar_role'));
+        switch ($data->isactive) {
+            case 0:
+                $class = 'bg-danger';
+                $isactive = 'Non-Active';
+                break;
+            case 1:
+                $class = 'bg-success';
+                $isactive = 'Active';
+                break;
+
+            default;
+            break;
+        };
+        return view('admin.users.detail',compact('data','ar_status','ar_role','class','isactive'));
     }
 
     /**
